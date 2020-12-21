@@ -41,3 +41,24 @@ public:
 private:
     OscillatorParameters() {};
 };
+
+class AmpEnvelopeParameters : public SynthParametersBase
+{
+public:
+    juce::AudioParameterFloat* Attack;
+    juce::AudioParameterFloat* Decay;
+    juce::AudioParameterFloat* Sustain;
+    juce::AudioParameterFloat* Release;
+
+    AmpEnvelopeParameters(juce::AudioParameterFloat* attack,
+                          juce::AudioParameterFloat* decay,
+                          juce::AudioParameterFloat* sustain,
+                          juce::AudioParameterFloat* release);
+
+    virtual void addAllParameters(juce::AudioProcessor& processor) override;
+    virtual void saveParameters(juce::XmlElement& xml) override;
+    virtual void loadParameters(juce::XmlElement& xml) override;
+
+private:
+    AmpEnvelopeParameters() {};
+};
