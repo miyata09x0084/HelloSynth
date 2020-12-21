@@ -102,3 +102,28 @@ public:
 private:
     FilterParameters() {};
 };
+
+class ReverbParameters : public SynthParametersBase
+{
+public:
+    juce::AudioParameterFloat*  RoomSize;
+    juce::AudioParameterFloat*  Damping;
+    juce::AudioParameterFloat*  WetLevel;
+    juce::AudioParameterFloat*  DryLevel;
+    juce::AudioParameterFloat*  Width;
+    juce::AudioParameterFloat*  FreezeMode;
+
+    ReverbParameters(juce::AudioParameterFloat*  roomSize,
+                     juce::AudioParameterFloat*  damping,
+                     juce::AudioParameterFloat*  wetLevel,
+                     juce::AudioParameterFloat*  dryLevel,
+                     juce::AudioParameterFloat*  width,
+                     juce::AudioParameterFloat*  freezeMode);
+
+    virtual void addAllParameters(juce::AudioProcessor& processor) override;
+    virtual void saveParameters(juce::XmlElement& xml) override;
+    virtual void loadParameters(juce::XmlElement& xml) override;
+
+private:
+    ReverbParameters() {};
+};
