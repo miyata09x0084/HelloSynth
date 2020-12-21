@@ -9,3 +9,16 @@
 */
 
 #pragma once
+
+
+#include "../JuceLibraryCode/JuceHeader.h"
+
+class SynthParametersBase
+{
+public:
+    virtual ~SynthParametersBase() {};
+    
+    virtual void addAllParameters(juce::AudioProcessor& processor) = 0;
+    virtual void saveParameters(juce::XmlElement& xml) = 0;
+    virtual void loadParameters(juce::XmlElement& xml) = 0;
+};
