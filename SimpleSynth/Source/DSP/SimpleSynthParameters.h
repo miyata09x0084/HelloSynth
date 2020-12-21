@@ -84,3 +84,21 @@ private:
     LfoParameters() {};
 };
 
+class FilterParameters : public SynthParametersBase
+{
+public:
+    juce::AudioParameterChoice* Type;
+    juce::AudioParameterFloat*  Frequency;
+    juce::AudioParameterFloat*  Q;
+
+    FilterParameters(juce::AudioParameterChoice* type,
+                     juce::AudioParameterFloat*  frequency,
+                     juce::AudioParameterFloat*  q);
+
+    virtual void addAllParameters(juce::AudioProcessor& processor) override;
+    virtual void saveParameters(juce::XmlElement& xml) override;
+    virtual void loadParameters(juce::XmlElement& xml) override;
+
+private:
+    FilterParameters() {};
+};
