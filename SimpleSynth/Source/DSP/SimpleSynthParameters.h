@@ -62,3 +62,25 @@ public:
 private:
     AmpEnvelopeParameters() {};
 };
+
+class LfoParameters : public SynthParametersBase
+{
+public:
+    juce::AudioParameterChoice* LfoTarget;
+    juce::AudioParameterChoice* LfoWaveType;
+    juce::AudioParameterFloat*  LfoAmount;
+    juce::AudioParameterFloat*  LfoSpeed;
+
+    LfoParameters(juce::AudioParameterChoice* lfoTarget,
+                  juce::AudioParameterChoice* lfoWaveType,
+                  juce::AudioParameterFloat*  LfoAmount,
+                  juce::AudioParameterFloat*  lfoSpeed);
+
+    virtual void addAllParameters(juce::AudioProcessor& processor) override;
+    virtual void saveParameters(juce::XmlElement& xml) override;
+    virtual void loadParameters(juce::XmlElement& xml) override;
+
+private:
+    LfoParameters() {};
+};
+
