@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="Bzk6u3" name="SimpleSynth" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="UHxutb" name="SimpleSynth">
     <GROUP id="{B5FF49CB-F8A7-FA0C-B4C9-7E27594021C1}" name="Source">
+      <GROUP id="{ABCF515F-6ECE-5EE9-0889-197D988D9CE0}" name="DSP">
+        <FILE id="tS8xiQ" name="AmpEnvelope.cpp" compile="1" resource="0" file="Source/DSP/AmpEnvelope.cpp"/>
+        <FILE id="IBLZEQ" name="AmpEnvelope.h" compile="0" resource="0" file="Source/DSP/AmpEnvelope.h"/>
+        <FILE id="qYiVSJ" name="SimpleSound.cpp" compile="1" resource="0" file="Source/DSP/SimpleSound.cpp"/>
+        <FILE id="K1sgyx" name="SimpleSound.h" compile="0" resource="0" file="Source/DSP/SimpleSound.h"/>
+        <FILE id="DL77TB" name="SimpleSynthParameters.cpp" compile="1" resource="0"
+              file="Source/DSP/SimpleSynthParameters.cpp"/>
+        <FILE id="Ak5QjB" name="SimpleSynthParameters.h" compile="0" resource="0"
+              file="Source/DSP/SimpleSynthParameters.h"/>
+        <FILE id="icbbJC" name="SimpleVoice.cpp" compile="1" resource="0" file="Source/DSP/SimpleVoice.cpp"/>
+        <FILE id="BCKxZZ" name="SimpleVoice.h" compile="0" resource="0" file="Source/DSP/SimpleVoice.h"/>
+        <FILE id="zT5JvS" name="Waveforms.cpp" compile="1" resource="0" file="Source/DSP/Waveforms.cpp"/>
+        <FILE id="yFOv9f" name="Waveforms.h" compile="0" resource="0" file="Source/DSP/Waveforms.h"/>
+      </GROUP>
       <FILE id="FLNQ27" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="ytXQYP" name="PluginProcessor.h" compile="0" resource="0"
@@ -33,6 +48,7 @@
         <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
@@ -46,9 +62,13 @@
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>
