@@ -43,12 +43,20 @@ void OscillatorParameters::loadParameters(juce::XmlElement& xml)
     *NoiseLevel = (float)xml.getDoubleAttribute(NoiseLevel->paramID, 0.0);
 }
 
-AmpEnvelopeParameters::AmpEnvelopeParameters(AudioParameterFloat* attack,
-                                             AudioParameterFloat* decay,
-                                             AudioParameterFloat* sustain,
-                                             AudioParameterFloat* release)
+AmpEnvelopeParameters::AmpEnvelopeParameters(juce::AudioParameterFloat* attack,
+                                             juce::AudioParameterFloat* decay,
+                                             juce::AudioParameterFloat* sustain,
+                                             juce::AudioParameterFloat* release)
     : Attack(attack)
     , Decay(decay)
     , Sustain(sustain)
     , Release(release)
 {}
+
+void AmpEnvelopeParameters::addAllParameters(AudioProcessor& processor)
+{
+    processor.addParameter(Attack);
+    processor.addParameter(Decay);
+    processor.addParameter(Sustain);
+    processor.addParameter(Release);
+}
