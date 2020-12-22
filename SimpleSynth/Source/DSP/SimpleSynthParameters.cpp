@@ -68,3 +68,11 @@ void AmpEnvelopeParameters::saveParameters(juce::XmlElement & xml)
     xml.setAttribute(Sustain->paramID, (double)Sustain->get());
     xml.setAttribute(Release->paramID, (double)Release->get());
 }
+
+void AmpEnvelopeParameters::loadParameters(juce::XmlElement & xml)
+{
+    *Attack = (float)xml.getDoubleAttribute(Attack->paramID, 0.01);
+    *Decay = (float)xml.getDoubleAttribute(Decay->paramID, 0.01);
+    *Sustain = (float)xml.getDoubleAttribute(Sustain->paramID, 1.0);
+    *Release = (float)xml.getDoubleAttribute(Release->paramID, 0.01);
+}
