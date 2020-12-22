@@ -24,3 +24,13 @@ void OscillatorParameters::addAllParameters(juce::AudioProcessor& processor)
     processor.addParameter(SquareWaveLevel);
     processor.addParameter(NoiseLevel);
 }
+
+void OscillatorParameters::saveParameters(juce::XmlElement& xml)
+{
+    xml.setAttribute(SineWaveLevel->paramID, (double)SineWaveLevel->get());
+    xml.setAttribute(SawWaveLevel->paramID, (double)SawWaveLevel->get());
+    xml.setAttribute(TriWaveLevel->paramID, (double)TriWaveLevel->get());
+    xml.setAttribute(SquareWaveLevel->paramID, (double)SquareWaveLevel->get());
+    xml.setAttribute(NoiseLevel->paramID, (double)NoiseLevel->get());
+}
+
