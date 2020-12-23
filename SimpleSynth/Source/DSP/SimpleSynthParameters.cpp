@@ -76,3 +76,17 @@ void AmpEnvelopeParameters::loadParameters(juce::XmlElement & xml)
     *Sustain = (float)xml.getDoubleAttribute(Sustain->paramID, 1.0);
     *Release = (float)xml.getDoubleAttribute(Release->paramID, 0.01);
 }
+
+LfoParameters::LfoParameters(juce::AudioParameterChoice* lfoTarget,
+                             juce::AudioParameterChoice* lfoWaveType,
+                             juce::AudioParameterFloat* lfoAmount,
+                             juce::AudioParameterFloat* lfoSpeed)
+    : LfoTarget(lfoTarget)
+    , LfoWaveType(lfoWaveType)
+    , LfoAmount(lfoAmount)
+    , LfoSpeed(lfoSpeed)
+{
+    LfoSpeed->range.symmetricSkew = false;
+    LfoSpeed->range.skew = 0.5;
+
+}
