@@ -59,3 +59,25 @@ float Waveforms::square(float angle)
         return -1.0f;
     }
 }
+
+float Waveforms::triangle(float angle)
+{
+    if(angle > TWO_PI)
+    {
+        angle = fmodf(angle, TWO_PI);
+    }
+
+    if (angle <= HALF_PI)
+    {
+        return (angle / HALF_PI);
+    }
+    else if(angle > HALF_PI && angle <= (ONE_PI + HALF_PI))
+    {
+        return 2.0f - (2.0f * angle / ONE_PI);
+    }
+    else
+    {
+        return -4.0f + (angle / HALF_PI);
+    }
+}
+
