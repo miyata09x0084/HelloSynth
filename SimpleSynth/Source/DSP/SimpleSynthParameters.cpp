@@ -61,7 +61,7 @@ void AmpEnvelopeParameters::addAllParameters(juce::AudioProcessor& processor)
     processor.addParameter(Release);
 }
 
-void AmpEnvelopeParameters::saveParameters(juce::XmlElement & xml)
+void AmpEnvelopeParameters::saveParameters(juce::XmlElement& xml)
 {
     xml.setAttribute(Attack->paramID, (double)Attack->get());
     xml.setAttribute(Decay->paramID, (double)Decay->get());
@@ -69,7 +69,7 @@ void AmpEnvelopeParameters::saveParameters(juce::XmlElement & xml)
     xml.setAttribute(Release->paramID, (double)Release->get());
 }
 
-void AmpEnvelopeParameters::loadParameters(juce::XmlElement & xml)
+void AmpEnvelopeParameters::loadParameters(juce::XmlElement& xml)
 {
     *Attack = (float)xml.getDoubleAttribute(Attack->paramID, 0.01);
     *Decay = (float)xml.getDoubleAttribute(Decay->paramID, 0.01);
@@ -99,3 +99,10 @@ void LfoParameters::addAllParameters(juce::AudioProcessor& processor)
     processor.addParameter(LfoSpeed);
 }
 
+void LfoParameters::saveParameters(juce::XmlElement& xml)
+{
+    xml.setAttribute(LfoTarget->paramID, LfoTarget->getIndex());
+    xml.setAttribute(LfoWaveType->paramID, LfoWaveType->getIndex());
+    xml.setAttribute(LfoAmount->paramID, (double)LfoAmount->get());
+    xml.setAttribute(LfoSpeed->paramID, (double)LfoSpeed->get());
+}
