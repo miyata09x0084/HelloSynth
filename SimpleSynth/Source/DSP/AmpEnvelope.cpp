@@ -93,3 +93,12 @@ void AmpEnvelope::attackStart()
     }
     _ampState = AMPENV_STATE::ATTACK;
 }
+
+void AmpEnvelope::releaseStart()
+{
+    if (isHolding())
+    {
+        _ampState = AMPENV_STATE::RELEASE;
+        _valueOnReleaseStart = _value;
+    }
+}
