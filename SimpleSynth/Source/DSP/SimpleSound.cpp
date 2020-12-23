@@ -9,3 +9,9 @@
 */
 
 #include "SimpleSound.h"
+
+SimpleSound::SimpleSound(const juce::BigInteger& notes, const juce::BigInteger& channels)
+    : midiNotes(notes), midiChannels(channels)
+{
+}
+
