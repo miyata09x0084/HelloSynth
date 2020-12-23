@@ -41,3 +41,21 @@ float Waveforms::saw(float angle)
         return -2.0f + (angle / ONE_PI) ;
     }
 }
+
+float Waveforms::square(float angle)
+{
+
+    if (angle > TWO_PI)
+    {
+        angle = fmodf(angle, TWO_PI);
+    }
+
+    if (angle <= ONE_PI)
+    {
+        return 1.0f;
+    }
+    else
+    {
+        return -1.0f;
+    }
+}
