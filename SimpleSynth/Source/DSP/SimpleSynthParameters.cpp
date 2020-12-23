@@ -146,3 +146,17 @@ void FilterParameters::loadParameters(juce::XmlElement& xml)
     *Frequency = (float)xml.getDoubleAttribute(Frequency->paramID, 20000.0);
     *Q = (float)xml.getDoubleAttribute(Q->paramID, 1.0);
 }
+
+ReverbParameters::ReverbParameters(juce::AudioParameterFloat* roomSize,
+                                   juce::AudioParameterFloat* damping,
+                                   juce::AudioParameterFloat* wetLevel,
+                                   juce::AudioParameterFloat* dryLevel,
+                                   juce::AudioParameterFloat* width,
+                                   juce::AudioParameterFloat* freezeMode)
+    :RoomSize(roomSize)
+    , Damping(damping)
+    , WetLevel(wetLevel)
+    , DryLevel(dryLevel)
+    , Width(width)
+    , FreezeMode(freezeMode)
+{}
