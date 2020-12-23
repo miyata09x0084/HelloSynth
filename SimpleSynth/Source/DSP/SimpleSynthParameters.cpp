@@ -90,3 +90,12 @@ LfoParameters::LfoParameters(juce::AudioParameterChoice* lfoTarget,
     LfoSpeed->range.skew = 0.5;
 
 }
+
+void LfoParameters::addAllParameters(juce::AudioProcessor& processor)
+{
+    processor.addParameter(LfoTarget);
+    processor.addParameter(LfoWaveType);
+    processor.addParameter(LfoAmount);
+    processor.addParameter(LfoSpeed);
+}
+
