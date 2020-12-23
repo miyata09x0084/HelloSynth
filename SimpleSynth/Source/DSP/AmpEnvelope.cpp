@@ -108,3 +108,14 @@ void AmpEnvelope::releaseEnd()
     _value = AMP_MIN;
     _ampState = AMPENV_STATE::WAIT;
 }
+
+bool AmpEnvelope::isHolding()
+{
+    if (_ampState == AmpEnvelope::AMPENV_STATE::ATTACK
+        || _ampState == AmpEnvelope::AMPENV_STATE::DECAY
+        || _ampState == AmpEnvelope::AMPENV_STATE::SUSTAIN)
+    {
+        return true;
+    }
+    return false;
+}
