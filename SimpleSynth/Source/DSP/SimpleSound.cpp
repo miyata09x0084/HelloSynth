@@ -25,3 +25,10 @@ bool SimpleSound::appliesToNote(int midiNoteNumber)
 
     return midiNotes[midiNoteNumber];
 }
+
+bool SimpleSound::appliesToChannel(int midiChannel)
+{
+    DBG("[appliesToChannel] " + juce::String("MidiChannel: ") + juce::String(midiChannel));
+
+    return midiChannels[midiChannel];
+}
