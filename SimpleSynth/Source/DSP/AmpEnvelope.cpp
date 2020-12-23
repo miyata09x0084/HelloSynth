@@ -84,3 +84,12 @@ void AmpEnvelope::setParameters(float attackTime, float decayTime, float sustain
         _sustainValue = AMP_MIN;
     }
 }
+
+void AmpEnvelope::attackStart()
+{
+    if (!isReleasing())
+    {
+        _value = AMP_MIN;
+    }
+    _ampState = AMPENV_STATE::ATTACK;
+}
