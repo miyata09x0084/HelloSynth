@@ -52,3 +52,8 @@ AmpEnvelope::AMPENV_STATE  AmpEnvelope::getState()
 {
     return _ampState;
 }
+
+float AmpEnvelope::getValue()
+{
+    return _value;
+}
