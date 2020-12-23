@@ -81,3 +81,7 @@ float Waveforms::triangle(float angle)
     }
 }
 
+float Waveforms::noise()
+{
+    return (whiteNoise.nextFloat() * 2.0f - 1.0f);
+}
