@@ -119,3 +119,8 @@ bool AmpEnvelope::isHolding()
     }
     return false;
 }
+
+bool AmpEnvelope::isReleasing()
+{
+    return _ampState == AmpEnvelope::AMPENV_STATE::RELEASE;
+}
