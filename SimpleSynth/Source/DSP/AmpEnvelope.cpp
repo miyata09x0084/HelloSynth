@@ -23,7 +23,6 @@ AmpEnvelope::AmpEnvelope(float attackTime, float decayTime, float sustain, float
     : _attackTime(attackTime), _decayTime(decayTime), _sustainValue(sustain), _releaseTime(releaseTime)
     , _sampleRate(0.0f), _value(0.0f), _valueOnReleaseStart(0.0f), _ampState(AMPENV_STATE::WAIT)
 {
-    // 各パラメータの値を定数で記述した最大値・最小値の範囲に収める。
     if (_attackTime <= ATTACK_MIN) {
         _attackTime = ATTACK_MIN;
     }
@@ -56,4 +55,32 @@ AmpEnvelope::AMPENV_STATE  AmpEnvelope::getState()
 float AmpEnvelope::getValue()
 {
     return _value;
+}
+
+void AmpEnvelope::setParameters(float attackTime, float decayTime, float sustain, float releaseTime)
+{
+    _attackTime = attackTime;
+    _decayTime = decayTime;
+    _sustainValue = sustain;
+    _releaseTime = releaseTime;
+
+    if (_attackTime <= ATTACK_MIN) {
+        _attackTime = ATTACK_MIN;
+    }
+
+    if (_decayTime <= DECAY_MIN) {
+        _decayTime = DECAY_MIN;
+    }
+
+    if (_releaseTime <= RELEASE_MIN) {
+        _releaseTime = RELEASE_MIN;
+    }
+
+    if (_sustainValue > AMP_MAX) {
+        _sustainValue = AMP_MAX;
+    }
+
+    if (_sustainValue < AMP_MIN) {
+        _sustainValue = AMP_MIN;
+    }
 }
