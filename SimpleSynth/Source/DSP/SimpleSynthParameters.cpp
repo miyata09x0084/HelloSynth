@@ -170,3 +170,13 @@ void ReverbParameters::addAllParameters(juce::AudioProcessor& processor)
     processor.addParameter(Width);
     processor.addParameter(FreezeMode);
 }
+
+void ReverbParameters::saveParameters(juce::XmlElement& xml)
+{
+    xml.setAttribute(RoomSize->paramID, (double)RoomSize->get());
+    xml.setAttribute(Damping->paramID, (double)Damping->get());
+    xml.setAttribute(WetLevel->paramID, (double)WetLevel->get());
+    xml.setAttribute(DryLevel->paramID, (double)DryLevel->get());
+    xml.setAttribute(Width->paramID, (double)Width->get());
+    xml.setAttribute(FreezeMode->paramID, (double)FreezeMode->get());
+}
