@@ -124,3 +124,45 @@ bool AmpEnvelope::isReleasing()
 {
     return _ampState == AmpEnvelope::AMPENV_STATE::RELEASE;
 }
+
+void AmpEnvelope::cycle(float sampleRate)
+{
+    _sampleRate = sampleRate;
+    switch (_ampState)
+    {
+    case AMPENV_STATE::ATTACK:
+        _value += AMP_MAX / (_sampleRate * _attackTime);
+        if (_value >= AMP_MAX)
+        {
+            _value = AMP_MAX;
+            _ampState = AMPENV_STATE::DECAY;
+        }
+        break;
+
+    case AMPENV_STATE::DECAY:
+        _value -= AMP_MAX / (_sampleRate * _decayTime);
+        if (_value <= _sustainValue)
+        {
+            _value = _sustainValue;
+            _ampState = AMPENV_STATE::SUSTAIN;
+        }
+        break;
+
+    case AMPENV_STATE::SUSTAIN:
+        _value = _sustainValue;
+        break;
+
+    case AMPENV_STATE::RELEASE:
+        _value -= _valueOnReleaseStart / (_sampleRate * _releaseTime);
+        if (_value <= AMP_MIN)
+        {
+            _value = AMP_MIN;
+            _ampState = AMPENV_STATE::WAIT;
+        }
+        break;
+
+    case AMPENV_STATE::WAIT:
+        _value = AMP_MIN;
+        break;
+    }
+}
