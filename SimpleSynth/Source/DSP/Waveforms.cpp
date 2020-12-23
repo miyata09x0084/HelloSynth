@@ -15,3 +15,12 @@ namespace {
     const float ONE_PI = juce::MathConstants<float>::pi;
     const float TWO_PI = juce::MathConstants<float>::twoPi;
 }
+
+float Waveforms::sine(float angle)
+{
+    if(angle > TWO_PI)
+    {
+        angle = fmodf(angle, TWO_PI);
+    }
+    return sinf(angle);
+}
