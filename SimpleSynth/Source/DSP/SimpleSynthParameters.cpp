@@ -114,3 +114,14 @@ void LfoParameters::loadParameters(juce::XmlElement& xml)
     *LfoAmount = (float)xml.getDoubleAttribute(LfoAmount->paramID, 0.3);
     *LfoSpeed = (float)xml.getDoubleAttribute(LfoSpeed->paramID, 2.0);
 }
+
+FilterParameters::FilterParameters(juce::AudioParameterChoice* type,
+                                   juce::AudioParameterFloat* frequency,
+                                   juce::AudioParameterFloat* q)
+    : Type(type)
+    , Frequency(frequency)
+    , Q(q)
+{
+    Frequency->range.symmetricSkew = false;
+    Frequency->range.skew = 0.3;
+}
