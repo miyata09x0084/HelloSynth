@@ -160,3 +160,13 @@ ReverbParameters::ReverbParameters(juce::AudioParameterFloat* roomSize,
     , Width(width)
     , FreezeMode(freezeMode)
 {}
+
+void ReverbParameters::addAllParameters(juce::AudioProcessor& processor)
+{
+    processor.addParameter(RoomSize);
+    processor.addParameter(Damping);
+    processor.addParameter(WetLevel);
+    processor.addParameter(DryLevel);
+    processor.addParameter(Width);
+    processor.addParameter(FreezeMode);
+}
