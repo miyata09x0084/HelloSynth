@@ -44,3 +44,11 @@ AmpEnvelope::AmpEnvelope(float attackTime, float decayTime, float sustain, float
         _sustainValue = AMP_MIN;
     }
 }
+
+AmpEnvelope::~AmpEnvelope()
+{}
+
+AmpEnvelope::AMPENV_STATE  AmpEnvelope::getState()
+{
+    return _ampState;
+}
