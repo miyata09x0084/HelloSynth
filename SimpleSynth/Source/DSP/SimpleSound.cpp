@@ -15,3 +15,13 @@ SimpleSound::SimpleSound(const juce::BigInteger& notes, const juce::BigInteger& 
 {
 }
 
+SimpleSound::~SimpleSound()
+{
+}
+
+bool SimpleSound::appliesToNote(int midiNoteNumber)
+{
+    DBG("[appliesToNote] " + juce::String("MidiNoteNumber: ") + juce::String(midiNoteNumber));
+
+    return midiNotes[midiNoteNumber];
+}
