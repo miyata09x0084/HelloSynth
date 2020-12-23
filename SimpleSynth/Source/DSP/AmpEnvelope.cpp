@@ -102,3 +102,9 @@ void AmpEnvelope::releaseStart()
         _valueOnReleaseStart = _value;
     }
 }
+
+void AmpEnvelope::releaseEnd()
+{
+    _value = AMP_MIN;
+    _ampState = AMPENV_STATE::WAIT;
+}
