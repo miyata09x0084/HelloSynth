@@ -126,3 +126,10 @@ FilterParameters::FilterParameters(juce::AudioParameterChoice* type,
     Frequency->range.symmetricSkew = false;
     Frequency->range.skew = 0.3;
 }
+
+void FilterParameters::addAllParameters(juce::AudioProcessor& processor)
+{
+    processor.addParameter(Type);
+    processor.addParameter(Frequency);
+    processor.addParameter(Q);
+}
