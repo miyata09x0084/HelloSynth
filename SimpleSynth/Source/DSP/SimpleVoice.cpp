@@ -28,4 +28,19 @@ class SimpleVoice : public juce::SynthesiserVoice
     virtual void pitchWheelMoved(int newPitchWheelValue) override;
     virtual void controllerMoved(int controllerNumber, int newControllerValue) override;
     virtual void renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
+    
+private:
+    float calcModulationFactor(float angle);
+
+    float currentAngle, lfoAngle, angleDelta;
+    float level, lastLevel, levelDiff;
+    float pitchBend;
+
+    Waveforms waveForms;
+    AmpEnvelope ampEnv;
+
+    OscillatorParameters* _oscParamsPtr;
+    LfoParameters* _lfoParamsPtr;
+    AmpEnvelopeParameters* _ampEnvParamsPtr;
+    juce::AudioParameterBool* _velocitySenseParamPtr;
 };
