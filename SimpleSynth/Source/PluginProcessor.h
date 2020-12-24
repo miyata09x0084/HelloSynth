@@ -55,6 +55,10 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     void changeVoiceSize();
+    
+    const juce::StringArray LFO_TARGETS{ "None", "WaveLevel", "WaveAngle" };
+    const juce::StringArray LFO_WAVE_TYPES{ "Sine", "Saw", "Tri", "Square", "Noise" };
+    const juce::StringArray FILTER_TYPES{ "Low-Pass", "High-Pass", "Band-Pass" };
 
 private:
     //==============================================================================
