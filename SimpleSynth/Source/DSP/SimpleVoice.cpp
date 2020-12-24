@@ -140,3 +140,10 @@ void FilterParameters::saveParameters(juce::XmlElement& xml)
     xml.setAttribute(Frequency->paramID, (double)Frequency->get());
     xml.setAttribute(Q->paramID, (double)Q->get());
 }
+
+void FilterParameters::loadParameters(juce::XmlElement & xml)
+{
+    *Type = xml.getIntAttribute(Type->paramID, 1);
+    *Frequency = (float)xml.getDoubleAttribute(Frequency->paramID, 20000.0);
+    *Q = (float)xml.getDoubleAttribute(Q->paramID, 1.0);
+}
