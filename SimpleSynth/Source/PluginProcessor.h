@@ -59,6 +59,16 @@ public:
     const juce::StringArray LFO_TARGETS{ "None", "WaveLevel", "WaveAngle" };
     const juce::StringArray LFO_WAVE_TYPES{ "Sine", "Saw", "Tri", "Square", "Noise" };
     const juce::StringArray FILTER_TYPES{ "Low-Pass", "High-Pass", "Band-Pass" };
+    
+    OscillatorParameters oscParameters;
+    LfoParameters lfoParameters;
+    AmpEnvelopeParameters ampEnvParameters;
+    FilterParameters filterParameters;
+    ReverbParameters reverbParameters;
+    juce::AudioParameterFloat* driveParameter;
+    juce::AudioParameterFloat* masterVolumePrameter;
+    juce::AudioParameterInt* voiceSizeParameter;
+    juce::AudioParameterBool* velocitySenseParameter;
 
 private:
     //==============================================================================
