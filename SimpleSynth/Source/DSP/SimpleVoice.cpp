@@ -85,3 +85,8 @@ void SimpleVoice::stopNote(float velocity, bool allowTailOff)
     }
 }
 
+void SimpleVoice::pitchWheelMoved(int newPitchWheelValue)
+{
+    pitchBend = ((float)newPitchWheelValue - 8192.0f) / 8192.0f;
+}
+
