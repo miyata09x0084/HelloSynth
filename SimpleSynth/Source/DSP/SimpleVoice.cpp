@@ -65,3 +65,23 @@ void SimpleVoice::startNote(int midiNoteNumber, float velocity, juce::Synthesise
     }
 }
 
+void SimpleVoice::stopNote(float velocity, bool allowTailOff)
+{
+    DBG("[stopNote] AllowTailOff: " + juce::String((int)allowTailOff));
+
+    lastLevel = level;
+
+    if (allowTailOff)
+    {
+        ampEnv.releaseStart();
+    }
+    else
+    {
+        if (ampEnv.isHolding()) {
+            ampEnv.releaseStart();
+        }
+
+        clearCurrentNote();
+    }
+}
+
