@@ -11,8 +11,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "DSP/SimpleSynthParameters.h"
 
-#include "GUI/ScopeComponent.h"
-
 //==============================================================================
 /**
 */
@@ -55,6 +53,8 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    void changeVoiceSize();
 
 private:
     //==============================================================================
