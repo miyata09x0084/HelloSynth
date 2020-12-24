@@ -27,4 +27,4 @@ SimpleVoice::SimpleVoice(OscillatorParameters* oscParams, LfoParameters* lfoPara
     , pitchBend(0.0f)
 {}
 
-
+SimpleVoice::~SimpleVoice()
