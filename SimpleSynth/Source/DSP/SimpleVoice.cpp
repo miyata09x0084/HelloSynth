@@ -99,3 +99,11 @@ void LfoParameters::addAllParameters(juce::AudioProcessor& processor)
     processor.addParameter(LfoAmount);
     processor.addParameter(LfoSpeed);
 }
+
+void LfoParameters::saveParameters(juce::XmlElement& xml)
+{
+    xml.setAttribute(LfoTarget->paramID, LfoTarget->getIndex());
+    xml.setAttribute(LfoWaveType->paramID, LfoWaveType->getIndex());
+    xml.setAttribute(LfoAmount->paramID, (double)LfoAmount->get());
+    xml.setAttribute(LfoSpeed->paramID, (double)LfoSpeed->get());
+}
