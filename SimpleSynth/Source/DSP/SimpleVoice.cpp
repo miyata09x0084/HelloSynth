@@ -120,3 +120,81 @@ float SimpleVoice::calcModulationFactor(float angle)
     factor = ((factor * _lfoParamsPtr->LfoAmount->get()) / 2.0f) + 0.5f;
     return factor;
 }
+
+void SimpleVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
+{
+    if (SimpleSound* playingSound = dynamic_cast<SimpleSound*>(getCurrentlyPlayingSound().get()))
+    {
+        if (angleDelta != 0.0f)
+        {
+            while (--numSamples >= 0)
+            {
+                float modulationFactor = calcModulationFactor(lfoAngle);
+
+                float currentSample = 0.0f;
+                {
+                    currentSample += waveForms.sine(currentAngle) * _oscParamsPtr->SineWaveLevel->get();
+                    currentSample += waveForms.saw(currentAngle) * _oscParamsPtr->SawWaveLevel->get();
+                    currentSample += waveForms.triangle(currentAngle) * _oscParamsPtr->TriWaveLevel->get();
+                    currentSample += waveForms.square(currentAngle) * _oscParamsPtr->SquareWaveLevel->get();
+                    currentSample += waveForms.noise() * _oscParamsPtr->NoiseLevel->get();
+                }
+
+                if (_lfoParamsPtr->LfoTarget->getCurrentChoiceName() == "WaveLevel") {
+                    currentSample *= modulationFactor;
+                }
+
+                levelDiff *= 0.99f;
+                currentSample *= level - levelDiff;
+
+                currentSample *= ampEnv.getValue();
+
+                for (int channelNum = outputBuffer.getNumChannels(); --channelNum >= 0;) {
+                    outputBuffer.addSample(channelNum, startSample, currentSample);
+                }
+
+                if (ampEnv.isReleasing())
+                {
+                    if (ampEnv.getValue() <= 0.005f)
+                    {
+                        ampEnv.releaseEnd();
+                        clearCurrentNote();
+                        angleDelta = 0.0f;
+                        currentAngle = 0.0f;
+                        lfoAngle = 0.0f;
+                        levelDiff = 0.0f;
+                        break;
+                    }
+                }
+
+                if (_lfoParamsPtr->LfoTarget->getCurrentChoiceName() == "WaveAngle")
+                {
+                    currentAngle += angleDelta * pow(2.0f, pitchBend) * modulationFactor;
+                }
+                else
+                {
+                    currentAngle += angleDelta * pow(2.0f, pitchBend);
+                }
+                lfoAngle += (_lfoParamsPtr->LfoSpeed->get() / (float)getSampleRate()) * TWO_PI;
+
+                if (fabsf(levelDiff) <= 0.005f) {
+                    levelDiff = 0.0f;
+                }
+
+                if (currentAngle > TWO_PI) {
+                    currentAngle -= TWO_PI;
+                }
+
+                if (lfoAngle > TWO_PI) {
+                    lfoAngle -= TWO_PI;
+                }
+
+                ampEnv.setParameters(_ampEnvParamsPtr->Attack->get(), _ampEnvParamsPtr->Decay->get(), _ampEnvParamsPtr->Sustain->get(), _ampEnvParamsPtr->Release->get());
+
+                ampEnv.cycle((float)getSampleRate());
+
+                ++startSample;
+            }
+        }
+    }
+}
