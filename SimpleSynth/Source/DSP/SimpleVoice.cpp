@@ -133,3 +133,10 @@ void FilterParameters::addAllParameters(juce::AudioProcessor& processor)
     processor.addParameter(Frequency);
     processor.addParameter(Q);
 }
+
+void FilterParameters::saveParameters(juce::XmlElement& xml)
+{
+    xml.setAttribute(Type->paramID, Type->getIndex());
+    xml.setAttribute(Frequency->paramID, (double)Frequency->get());
+    xml.setAttribute(Q->paramID, (double)Q->get());
+}
