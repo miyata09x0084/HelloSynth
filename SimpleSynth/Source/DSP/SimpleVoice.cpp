@@ -54,3 +54,11 @@ AmpEnvelopeParameters::AmpEnvelopeParameters(juce::AudioParameterFloat* attack,
     , Sustain(sustain)
     , Release(release)
 {}
+
+void AmpEnvelopeParameters::addAllParameters(juce::AudioProcessor& processor)
+{
+    processor.addParameter(Attack);
+    processor.addParameter(Decay);
+    processor.addParameter(Sustain);
+    processor.addParameter(Release);
+}
