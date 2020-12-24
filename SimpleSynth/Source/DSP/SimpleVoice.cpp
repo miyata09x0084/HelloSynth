@@ -62,3 +62,11 @@ void AmpEnvelopeParameters::addAllParameters(juce::AudioProcessor& processor)
     processor.addParameter(Sustain);
     processor.addParameter(Release);
 }
+
+void AmpEnvelopeParameters::saveParameters(juce::XmlElement & xml)
+{
+    xml.setAttribute(Attack->paramID, (double)Attack->get());
+    xml.setAttribute(Decay->paramID, (double)Decay->get());
+    xml.setAttribute(Sustain->paramID, (double)Sustain->get());
+    xml.setAttribute(Release->paramID, (double)Release->get());
+}
