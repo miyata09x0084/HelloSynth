@@ -28,3 +28,9 @@ SimpleVoice::SimpleVoice(OscillatorParameters* oscParams, LfoParameters* lfoPara
 {}
 
 SimpleVoice::~SimpleVoice()
+{}
+
+bool SimpleVoice::canPlaySound(juce::SynthesiserSound* sound)
+{
+    return dynamic_cast<const SimpleSound*> (sound) != nullptr;
+}
