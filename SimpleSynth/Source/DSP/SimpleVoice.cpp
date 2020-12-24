@@ -107,3 +107,11 @@ void LfoParameters::saveParameters(juce::XmlElement& xml)
     xml.setAttribute(LfoAmount->paramID, (double)LfoAmount->get());
     xml.setAttribute(LfoSpeed->paramID, (double)LfoSpeed->get());
 }
+
+void LfoParameters::loadParameters(juce::XmlElement& xml)
+{
+    *LfoTarget = xml.getIntAttribute(LfoTarget->paramID, 0);
+    *LfoWaveType = xml.getIntAttribute(LfoWaveType->paramID, 0);
+    *LfoAmount = (float)xml.getDoubleAttribute(LfoAmount->paramID, 0.3);
+    *LfoSpeed = (float)xml.getDoubleAttribute(LfoSpeed->paramID, 2.0);
+}
