@@ -9,3 +9,9 @@
 */
 
 #include "SimpleVoice.h"
+
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "SimpleSynthParameters.h"
+#include "Waveforms.h"
+#include "AmpEnvelope.h"
+#include "SimpleSound.h"
