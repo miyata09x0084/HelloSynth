@@ -15,3 +15,10 @@
 #include "Waveforms.h"
 #include "AmpEnvelope.h"
 #include "SimpleSound.h"
+
+class SimpleVoice : public juce::SynthesiserVoice
+{
+    SimpleVoice(OscillatorParameters* oscParams, LfoParameters* lfoParams, AmpEnvelopeParameters* ampEnvParams, juce::AudioParameterBool* velocitySenseParam);
+
+    virtual ~SimpleVoice();
+};
