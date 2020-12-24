@@ -93,3 +93,30 @@ void SimpleVoice::pitchWheelMoved(int newPitchWheelValue)
 void SimpleVoice::controllerMoved(int controllerNumber, int newControllerValue)
 {}
 
+float SimpleVoice::calcModulationFactor(float angle)
+{
+    float factor = 0.0f;
+    juce::String waveTypeName = _lfoParamsPtr->LfoWaveType->getCurrentChoiceName();
+    if (waveTypeName == "Sine")
+    {
+        factor = waveForms.sine(angle);
+    }
+    else if (waveTypeName == "Saw")
+    {
+        factor = waveForms.saw(angle);
+    }
+    else if (waveTypeName == "Tri")
+    {
+        factor = waveForms.triangle(angle);
+    }
+    else if (waveTypeName == "Square")
+    {
+        factor = waveForms.square(angle);
+    }
+    else if (waveTypeName == "Noise")
+    {
+        factor = waveForms.noise();
+    }
+    factor = ((factor * _lfoParamsPtr->LfoAmount->get()) / 2.0f) + 0.5f;
+    return factor;
+}
