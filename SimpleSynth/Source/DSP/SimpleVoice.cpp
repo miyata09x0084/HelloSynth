@@ -35,3 +35,12 @@ void OscillatorParameters::saveParameters(juce::XmlElement& xml)
     xml.setAttribute(SquareWaveLevel->paramID, (double)SquareWaveLevel->get());
     xml.setAttribute(NoiseLevel->paramID, (double)NoiseLevel->get());
 }
+
+void OscillatorParameters::loadParameters(juce::XmlElement& xml)
+{
+    *SineWaveLevel = (float)xml.getDoubleAttribute(SineWaveLevel->paramID, 1.0);
+    *SawWaveLevel = (float)xml.getDoubleAttribute(SawWaveLevel->paramID, 1.0);
+    *TriWaveLevel = (float)xml.getDoubleAttribute(TriWaveLevel->paramID, 1.0);
+    *SquareWaveLevel = (float)xml.getDoubleAttribute(SquareWaveLevel->paramID, 1.0);
+    *NoiseLevel = (float)xml.getDoubleAttribute(NoiseLevel->paramID, 0.0);
+}
