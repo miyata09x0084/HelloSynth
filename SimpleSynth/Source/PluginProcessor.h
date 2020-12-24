@@ -71,6 +71,20 @@ public:
     juce::AudioParameterBool* velocitySenseParameter;
 
 private:
+    juce::Synthesiser   synth;
+
+    juce::dsp::ProcessSpec spec;
+
+    juce::dsp::WaveShaper<float> clipper, limiter;
+
+    static float clippingFunction(float inputValue);
+
+    juce::dsp::Gain<float> drive, masterVolume;
+
+    juce::dsp::Reverb reverb;
+
+    juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>> iirFilter;
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleSynthAudioProcessor)
 };
