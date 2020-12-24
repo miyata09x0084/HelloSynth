@@ -9,3 +9,12 @@
 */
 
 #include "SimpleVoice.h"
+
+OscillatorParameters::OscillatorParameters(juce::AudioParameterFloat* sineWaveLevel, juce::AudioParameterFloat* sawWaveLevel,
+                                           juce::AudioParameterFloat* triWaveLevel, juce::AudioParameterFloat* squareWaveLevel,
+                                           juce::AudioParameterFloat* noiseLevel)
+    :SineWaveLevel(sineWaveLevel), SawWaveLevel(sawWaveLevel),
+     TriWaveLevel(triWaveLevel), SquareWaveLevel(squareWaveLevel),
+     NoiseLevel(noiseLevel)
+{}
+
