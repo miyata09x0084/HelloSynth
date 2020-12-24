@@ -8,7 +8,8 @@
 
 #pragma once
 
-#include <JuceHeader.h>
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "DSP/SimpleSynthParameters.h"
 
 //==============================================================================
 /**
