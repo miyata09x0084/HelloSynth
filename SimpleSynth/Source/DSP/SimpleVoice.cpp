@@ -18,3 +18,12 @@ OscillatorParameters::OscillatorParameters(juce::AudioParameterFloat* sineWaveLe
      NoiseLevel(noiseLevel)
 {}
 
+void OscillatorParameters::addAllParameters(juce::AudioProcessor& processor)
+{
+    processor.addParameter(SineWaveLevel);
+    processor.addParameter(SawWaveLevel);
+    processor.addParameter(TriWaveLevel);
+    processor.addParameter(SquareWaveLevel);
+    processor.addParameter(NoiseLevel);
+}
+
