@@ -227,21 +227,54 @@ void SimpleSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
         buffer.clear(channel, 0, buffer.getNumSamples());
     }
     
-   　synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    juce::dsp::AudioBlock<float> audioBlock(buffer);
+    juce::dsp::ProcessContextReplacing<float> context(audioBlock);
+
+    if (filterParameters.Type->getCurrentChoiceName() == "Low-Pass")
     {
-        auto* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data...
+        *iirFilter.state = *juce::dsp::IIR::Coefficients<float>::makeLowPass(spec.sampleRate
+            , filterParameters.Frequency->get()
+            , filterParameters.Q->get()
+        );
     }
+    else if (filterParameters.Type->getCurrentChoiceName() == "High-Pass")
+    {
+        *iirFilter.state = *juce::dsp::IIR::Coefficients<float>::makeHighPass(spec.sampleRate
+            , filterParameters.Frequency->get()
+            , filterParameters.Q->get()
+        );
+    }
+    else if (filterParameters.Type->getCurrentChoiceName() == "Band-Pass")
+    {
+        *iirFilter.state = *juce::dsp::IIR::Coefficients<float>::makeBandPass(spec.sampleRate
+            , filterParameters.Frequency->get()
+            , filterParameters.Q->get()
+        );
+    }
+    iirFilter.process(context);
+
+    drive.setGainDecibels(driveParameter->get());
+    drive.process(context);
+
+    clipper.process(context);
+
+    juce::dsp::Reverb::Parameters reverbParam;
+    reverbParam.roomSize = reverbParameters.RoomSize->get();
+    reverbParam.damping = reverbParameters.Damping->get();
+    reverbParam.wetLevel = reverbParameters.WetLevel->get();
+    reverbParam.dryLevel = reverbParameters.DryLevel->get();
+    reverbParam.width = reverbParameters.Width->get();
+    reverbParam.freezeMode = reverbParameters.FreezeMode->get();
+    reverb.setParameters(reverbParam);
+    reverb.process(context);
+
+    limiter.process(context);
+
+    masterVolume.setGainDecibels(masterVolumePrameter->get());
+    masterVolume.process(context);
 }
 
 //==============================================================================
