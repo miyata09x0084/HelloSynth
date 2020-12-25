@@ -9,6 +9,9 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include "DSP/SimpleSound.h"
+#include "DSP/SimpleVoice.h"
+
 //==============================================================================
 SimpleSynthAudioProcessor::SimpleSynthAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -224,6 +227,31 @@ void SimpleSynthAudioProcessor::setStateInformation (const void* data, int sizeI
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+void SimpleSynthAudioProcessor::changeVoiceSize()
+{
+    while (synth.getNumVoices() != voiceSizeParameter->get())
+    {
+        if (synth.getNumVoices() > voiceSizeParameter->get())
+        {
+            synth.removeVoice(synth.getNumVoices() - 1);
+        }
+        else
+        {
+            synth.addVoice(new SimpleVoice(&oscParameters, &lfoParameters, &ampEnvParameters, velocitySenseParameter));
+        }
+    }
+}
+
+float SimpleSynthAudioProcessor::clippingFunction(float inputValue)
+{
+    float threshold = tanhf(inputValue);
+    float outputValue = inputValue;
+
+    if (abs(inputValue) >= abs(threshold)) outputValue = threshold;
+
+    return outputValue;
 }
 
 //==============================================================================
