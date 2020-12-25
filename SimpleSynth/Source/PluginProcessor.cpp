@@ -244,6 +244,17 @@ void SimpleSynthAudioProcessor::changeVoiceSize()
     }
 }
 
+float SimpleSynthAudioProcessor::clippingFunction(float inputValue)
+{
+    float threshold = tanhf(inputValue);
+    float outputValue = inputValue;
+
+    if (abs(inputValue) >= abs(threshold)) outputValue = threshold;
+
+    return outputValue;
+}
+
+
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
