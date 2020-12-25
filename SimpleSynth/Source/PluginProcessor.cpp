@@ -226,6 +226,9 @@ void SimpleSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
 
         buffer.clear(channel, 0, buffer.getNumSamples());
     }
+    
+   　synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
