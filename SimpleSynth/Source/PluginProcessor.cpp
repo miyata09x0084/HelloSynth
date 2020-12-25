@@ -21,6 +21,13 @@ SimpleSynthAudioProcessor::SimpleSynthAudioProcessor()
                      #endif
                        )
 #endif
+, oscParameters{
+    new juce::AudioParameterFloat("SINEWAVE_LEVEL",   "SineWave-Level", 0.0f, 1.0f, 1.0f),
+    new juce::AudioParameterFloat("SAWWAVE_LEVEL",    "SawWave-Level", 0.0f, 1.0f, 1.0f),
+    new juce::AudioParameterFloat("TRIWAVE_LEVEL",    "TriWave-Level", 0.0f, 1.0f, 1.0f),
+    new juce::AudioParameterFloat("SQUAREWAVE_LEVEL", "SquareWave-Level", 0.0f, 1.0f, 1.0f),
+    new juce::AudioParameterFloat("NOISE_LEVEL", "Noise-Level",  0.0f, 1.0f, 0.0f)
+}
 {
 }
 
