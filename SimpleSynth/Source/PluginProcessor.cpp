@@ -45,6 +45,14 @@ SimpleSynthAudioProcessor::SimpleSynthAudioProcessor()
     new juce::AudioParameterFloat("FILTER_FREQUENCY", "Frequency", 20.f, 20000.0f, 20000.0f),
     new juce::AudioParameterFloat("FILTER_Q", "Q", 0.3f, 20.0f, 1.0f),
 }
+, reverbParameters{
+    new juce::AudioParameterFloat("REVERB_ROOM_SIZE", "Room-Size",    0.0f, 1.0f, 0.0f),
+    new juce::AudioParameterFloat("REVERB_DAMPING",   "Damping",      0.0f, 1.0f, 0.0f),
+    new juce::AudioParameterFloat("REVERB_WET_LEVEL", "Wet-Level",    0.0f, 1.0f, 0.0f),
+    new juce::AudioParameterFloat("REVERB_DRY_LEVEL", "Dry-Level",    0.0f, 1.0f, 1.0f),
+    new juce::AudioParameterFloat("REVERB_WIDTH",     "Width",        0.0f, 1.0f, 0.0f),
+    new juce::AudioParameterFloat("REVERB_FREEZE_MODE",  "Freeze-Mode",   0.0f, 1.0f, 0.0f)
+}
 {
 }
 
