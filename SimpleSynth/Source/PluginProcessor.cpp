@@ -21,38 +21,44 @@ SimpleSynthAudioProcessor::SimpleSynthAudioProcessor()
                      #endif
                        )
 #endif
-, oscParameters{
-    new juce::AudioParameterFloat("SINEWAVE_LEVEL",   "SineWave-Level", 0.0f, 1.0f, 1.0f),
-    new juce::AudioParameterFloat("SAWWAVE_LEVEL",    "SawWave-Level", 0.0f, 1.0f, 1.0f),
-    new juce::AudioParameterFloat("TRIWAVE_LEVEL",    "TriWave-Level", 0.0f, 1.0f, 1.0f),
-    new juce::AudioParameterFloat("SQUAREWAVE_LEVEL", "SquareWave-Level", 0.0f, 1.0f, 1.0f),
-    new juce::AudioParameterFloat("NOISE_LEVEL", "Noise-Level",  0.0f, 1.0f, 0.0f)
-}
-, lfoParameters{
-    new juce::AudioParameterChoice("LFO_TARGET", "Lfo-Target", LFO_TARGETS, 0),
-    new juce::AudioParameterChoice("LFO_WAVE_TYPE", "Lfo-WaveType", LFO_WAVE_TYPES, 0),
-    new juce::AudioParameterFloat("LFO_LEVEL", "Lfo-Level",  0.0f, 1.0f, 0.5f),
-    new juce::AudioParameterFloat("LFO_SPEED", "Lfo-Speed",  0.0f, 20.0f, 0.2f)
-}
-, ampEnvParameters{
-    new juce::AudioParameterFloat("AMPENV_ATTACK", "Attack", 0.01f, 3.0f, 0.1f),
-    new juce::AudioParameterFloat("AMPENV_DECAY", "Decay",  0.01f, 3.0f, 0.1f),
-    new juce::AudioParameterFloat("AMPENV_SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f),
-    new juce::AudioParameterFloat("AMPENV_RELEASE", "Release", 0.01f, 3.0f, 0.1f)
-}
-, filterParameters{
-    new juce::AudioParameterChoice("FILTER_TYPE", "FilterType", FILTER_TYPES, 0),
-    new juce::AudioParameterFloat("FILTER_FREQUENCY", "Frequency", 20.f, 20000.0f, 20000.0f),
-    new juce::AudioParameterFloat("FILTER_Q", "Q", 0.3f, 20.0f, 1.0f),
-}
-, reverbParameters{
-    new juce::AudioParameterFloat("REVERB_ROOM_SIZE", "Room-Size",    0.0f, 1.0f, 0.0f),
-    new juce::AudioParameterFloat("REVERB_DAMPING",   "Damping",      0.0f, 1.0f, 0.0f),
-    new juce::AudioParameterFloat("REVERB_WET_LEVEL", "Wet-Level",    0.0f, 1.0f, 0.0f),
-    new juce::AudioParameterFloat("REVERB_DRY_LEVEL", "Dry-Level",    0.0f, 1.0f, 1.0f),
-    new juce::AudioParameterFloat("REVERB_WIDTH",     "Width",        0.0f, 1.0f, 0.0f),
-    new juce::AudioParameterFloat("REVERB_FREEZE_MODE",  "Freeze-Mode",   0.0f, 1.0f, 0.0f)
-}
+    , oscParameters{
+        new juce::AudioParameterFloat("SINEWAVE_LEVEL",   "SineWave-Level", 0.0f, 1.0f, 1.0f),
+        new juce::AudioParameterFloat("SAWWAVE_LEVEL",    "SawWave-Level", 0.0f, 1.0f, 1.0f),
+        new juce::AudioParameterFloat("TRIWAVE_LEVEL",    "TriWave-Level", 0.0f, 1.0f, 1.0f),
+        new juce::AudioParameterFloat("SQUAREWAVE_LEVEL", "SquareWave-Level", 0.0f, 1.0f, 1.0f),
+        new juce::AudioParameterFloat("NOISE_LEVEL", "Noise-Level",  0.0f, 1.0f, 0.0f)
+    }
+    , lfoParameters{
+        new juce::AudioParameterChoice("LFO_TARGET", "Lfo-Target", LFO_TARGETS, 0),
+        new juce::AudioParameterChoice("LFO_WAVE_TYPE", "Lfo-WaveType", LFO_WAVE_TYPES, 0),
+        new juce::AudioParameterFloat("LFO_LEVEL", "Lfo-Level",  0.0f, 1.0f, 0.5f),
+        new juce::AudioParameterFloat("LFO_SPEED", "Lfo-Speed",  0.0f, 20.0f, 0.2f)
+    }
+    , ampEnvParameters{
+        new juce::AudioParameterFloat("AMPENV_ATTACK", "Attack", 0.01f, 3.0f, 0.1f),
+        new juce::AudioParameterFloat("AMPENV_DECAY", "Decay",  0.01f, 3.0f, 0.1f),
+        new juce::AudioParameterFloat("AMPENV_SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f),
+        new juce::AudioParameterFloat("AMPENV_RELEASE", "Release", 0.01f, 3.0f, 0.1f)
+    }
+    , filterParameters{
+        new juce::AudioParameterChoice("FILTER_TYPE", "FilterType", FILTER_TYPES, 0),
+        new juce::AudioParameterFloat("FILTER_FREQUENCY", "Frequency", 20.f, 20000.0f, 20000.0f),
+        new juce::AudioParameterFloat("FILTER_Q", "Q", 0.3f, 20.0f, 1.0f),
+    }
+    , reverbParameters{
+        new juce::AudioParameterFloat("REVERB_ROOM_SIZE", "Room-Size",    0.0f, 1.0f, 0.0f),
+        new juce::AudioParameterFloat("REVERB_DAMPING",   "Damping",      0.0f, 1.0f, 0.0f),
+        new juce::AudioParameterFloat("REVERB_WET_LEVEL", "Wet-Level",    0.0f, 1.0f, 0.0f),
+        new juce::AudioParameterFloat("REVERB_DRY_LEVEL", "Dry-Level",    0.0f, 1.0f, 1.0f),
+        new juce::AudioParameterFloat("REVERB_WIDTH",     "Width",        0.0f, 1.0f, 0.0f),
+        new juce::AudioParameterFloat("REVERB_FREEZE_MODE",  "Freeze-Mode",   0.0f, 1.0f, 0.0f)
+    }
+    , driveParameter(new AudioParameterFloat("DRIVE", "Drive", -24.f, 12.f, 0.0f))
+    , masterVolumePrameter(new AudioParameterFloat("MASTER_VOLUME", "Volume", -36.f, 6.f, -3.0f))
+    , voiceSizeParameter(new AudioParameterInt("VOICE_SIZE", "Voice-Size", 1, 128, 8))
+    , velocitySenseParameter(new AudioParameterBool("VELOCITY_SENSE", "Velocity-Sense", true))
+// GUI: SCOPEコンポネントで用いるScopeDataCollectorクラスのオブジェクトを初期化する処理
+, scopeDataCollector(scopeDataQueue)
 {
 }
 
