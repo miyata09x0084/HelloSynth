@@ -53,13 +53,20 @@ SimpleSynthAudioProcessor::SimpleSynthAudioProcessor()
         new juce::AudioParameterFloat("REVERB_WIDTH",     "Width",        0.0f, 1.0f, 0.0f),
         new juce::AudioParameterFloat("REVERB_FREEZE_MODE",  "Freeze-Mode",   0.0f, 1.0f, 0.0f)
     }
-    , driveParameter(new AudioParameterFloat("DRIVE", "Drive", -24.f, 12.f, 0.0f))
-    , masterVolumePrameter(new AudioParameterFloat("MASTER_VOLUME", "Volume", -36.f, 6.f, -3.0f))
-    , voiceSizeParameter(new AudioParameterInt("VOICE_SIZE", "Voice-Size", 1, 128, 8))
-    , velocitySenseParameter(new AudioParameterBool("VELOCITY_SENSE", "Velocity-Sense", true))
-// GUI: SCOPEコンポネントで用いるScopeDataCollectorクラスのオブジェクトを初期化する処理
-, scopeDataCollector(scopeDataQueue)
+, driveParameter(new juce::AudioParameterFloat("DRIVE", "Drive", -24.f, 12.f, 0.0f))
+, masterVolumePrameter(new juce::AudioParameterFloat("MASTER_VOLUME", "Volume", -36.f, 6.f, -3.0f))
+, voiceSizeParameter(new juce::AudioParameterInt("VOICE_SIZE", "Voice-Size", 1, 128, 8))
+, velocitySenseParameter(new juce::AudioParameterBool("VELOCITY_SENSE", "Velocity-Sense", true))
 {
+    oscParameters.addAllParameters(*this);
+    lfoParameters.addAllParameters(*this);
+    ampEnvParameters.addAllParameters(*this);
+    addParameter(driveParameter);
+    filterParameters.addAllParameters(*this);
+    reverbParameters.addAllParameters(*this);
+    addParameter(masterVolumePrameter);
+    addParameter(voiceSizeParameter);
+    addParameter(velocitySenseParameter);
 }
 
 SimpleSynthAudioProcessor::~SimpleSynthAudioProcessor()
