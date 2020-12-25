@@ -141,8 +141,25 @@ void SimpleSynthAudioProcessor::changeProgramName (int index, const juce::String
 //==============================================================================
 void SimpleSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    synth.clearSounds();
+    synth.clearVoices();
+
+    synth.setCurrentPlaybackSampleRate(sampleRate);
+
+    juce::BigInteger canPlayNotes;
+    canPlayNotes.setRange(0, 127, true);
+
+    juce::BigInteger canPlayChannels;
+    canPlayChannels.setRange(1, 16, true);
+
+    synth.addSound(new SimpleSound(canPlayNotes, canPlayChannels));
+
+    int numVoices = voiceSizeParameter->get();
+    for (int i = 0; i < numVoices; ++i)
+    {
+        synth.addVoice(new SimpleVoice(&oscParameters, &lfoParameters,
+            &ampEnvParameters, velocitySenseParameter));
+    }
 }
 
 void SimpleSynthAudioProcessor::releaseResources()
