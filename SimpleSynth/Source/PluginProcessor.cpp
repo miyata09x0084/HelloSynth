@@ -160,6 +160,24 @@ void SimpleSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
         synth.addVoice(new SimpleVoice(&oscParameters, &lfoParameters,
             &ampEnvParameters, velocitySenseParameter));
     }
+    
+    spec.sampleRate = sampleRate;
+    spec.numChannels = getTotalNumOutputChannels();
+    spec.maximumBlockSize = samplesPerBlock;
+
+    iirFilter.prepare(spec);
+
+    drive.prepare(spec);
+
+    clipper.prepare(spec);
+    clipper.functionToUse = clippingFunction;
+
+    reverb.prepare(spec);
+
+    limiter.prepare(spec);
+    limiter.functionToUse = clippingFunction;
+
+    masterVolume.prepare(spec);
 }
 
 void SimpleSynthAudioProcessor::releaseResources()
