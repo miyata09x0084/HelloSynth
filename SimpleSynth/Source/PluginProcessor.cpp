@@ -40,6 +40,11 @@ SimpleSynthAudioProcessor::SimpleSynthAudioProcessor()
     new juce::AudioParameterFloat("AMPENV_SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f),
     new juce::AudioParameterFloat("AMPENV_RELEASE", "Release", 0.01f, 3.0f, 0.1f)
 }
+, filterParameters{
+    new juce::AudioParameterChoice("FILTER_TYPE", "FilterType", FILTER_TYPES, 0),
+    new juce::AudioParameterFloat("FILTER_FREQUENCY", "Frequency", 20.f, 20000.0f, 20000.0f),
+    new juce::AudioParameterFloat("FILTER_Q", "Q", 0.3f, 20.0f, 1.0f),
+}
 {
 }
 
