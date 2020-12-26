@@ -291,9 +291,20 @@ juce::AudioProcessorEditor* SimpleSynthAudioProcessor::createEditor()
 //==============================================================================
 void SimpleSynthAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
+    std::unique_ptr<juce::XmlElement> xml(new juce::XmlElement("SimpleSynthParameters"));
+
+    oscParameters.saveParameters(*xml);
+    lfoParameters.saveParameters(*xml);
+    ampEnvParameters.saveParameters(*xml);
+    filterParameters.saveParameters(*xml);
+    reverbParameters.saveParameters(*xml);
+
+    xml->setAttribute(driveParameter->paramID, (double)driveParameter->get());
+    xml->setAttribute(masterVolumePrameter->paramID, (double)masterVolumePrameter->get());
+    xml->setAttribute(voiceSizeParameter->paramID, voiceSizeParameter->get());
+    xml->setAttribute(velocitySenseParameter->paramID, velocitySenseParameter->get());
+
+    copyXmlToBinary(*xml, destData);
 }
 
 void SimpleSynthAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
