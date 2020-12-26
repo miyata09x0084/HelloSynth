@@ -309,8 +309,25 @@ void SimpleSynthAudioProcessor::getStateInformation (juce::MemoryBlock& destData
 
 void SimpleSynthAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
+    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+
+    if (xmlState.get() != nullptr)
+    {
+        if (xmlState->hasTagName("SimpleSynthParameters"))
+        {
+            oscParameters.loadParameters(*xmlState);
+            lfoParameters.loadParameters(*xmlState);
+            ampEnvParameters.loadParameters(*xmlState);
+            filterParameters.loadParameters(*xmlState);
+            reverbParameters.loadParameters(*xmlState);
+
+            *driveParameter = (float)xmlState->getDoubleAttribute(driveParameter->paramID, 0.0);
+            *masterVolumePrameter = (float)xmlState->getDoubleAttribute(masterVolumePrameter->paramID, -3.0);
+
+            *voiceSizeParameter = xmlState->getIntAttribute(voiceSizeParameter->paramID, 1);
+            *velocitySenseParameter = xmlState->getBoolAttribute(velocitySenseParameter->paramID, true);
+        }
+    }
 }
 
 void SimpleSynthAudioProcessor::changeVoiceSize()
