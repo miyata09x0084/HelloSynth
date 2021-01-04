@@ -15,4 +15,7 @@
 
 class OscillatorParametersComponent : public juce::Component, juce::Slider::Listener, private juce::Timer
 {
+public:
+    OscillatorParametersComponent(OscillatorParameters* oscParams);
+    virtual ~OscillatorParametersComponent();
 };
