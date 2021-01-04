@@ -146,3 +146,33 @@ private:
 
     juce::Label gainLabel;
 };
+
+class ReverbParametersComponent : public juce::Component, juce::Slider::Listener, private juce::Timer
+{
+public:
+    ReverbParametersComponent(ReverbParameters* reverbParams);
+    virtual ~ReverbParametersComponent();
+    virtual void paint(juce::Graphics& g) override;
+    virtual void resized() override;
+
+private:
+    ReverbParametersComponent();
+    virtual void timerCallback() override;
+    virtual void sliderValueChanged(juce::Slider* slider) override;
+
+    ReverbParameters* _reverbParamsPtr;
+    
+    juce::Slider roomSizeSlider;
+    juce::Slider dampingSlider;
+    juce::Slider wetLevelSlider;
+    juce::Slider dryLevelSlider;
+    juce::Slider widthSlider;
+    juce::Slider freezeModeSlider;
+    
+    juce::Label roomSizeLabel;
+    juce::Label dampingLabel;
+    juce::Label wetLevelLabel;
+    juce::Label dryLevelLabel;
+    juce::Label widthLabel;
+    juce::Label freezeModeLabel;
+};
