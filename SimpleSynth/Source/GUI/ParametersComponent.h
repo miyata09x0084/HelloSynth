@@ -72,3 +72,31 @@ private:
     juce::Label sustainLabel;
     juce::Label releaseLabel;
 };
+
+class LfoParametersComponent : public juce::Component, juce::Slider::Listener, juce::ComboBox::Listener, private juce::Timer
+{
+public:
+    LfoParametersComponent(LfoParameters* lfoParams);
+    virtual ~LfoParametersComponent();
+    virtual void paint(juce::Graphics& g) override;
+    virtual void resized() override;
+
+private:
+    LfoParametersComponent();
+    virtual void timerCallback() override;
+    virtual void sliderValueChanged(juce::Slider* slider) override;
+    virtual void comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) override;
+
+    LfoParameters* _lfoParamsPtr;
+
+    juce::ComboBox targetSelector;
+    juce::ComboBox waveTypeSelector;
+
+    juce::Slider amountSlider;
+    juce::Slider speedSlider;
+
+    juce::Label targetLabel;
+    juce::Label waveTypeLabel;
+    juce::Label amountLabel;
+    juce::Label speedLabel;
+};
