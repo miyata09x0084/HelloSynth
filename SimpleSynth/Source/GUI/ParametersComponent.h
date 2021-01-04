@@ -126,3 +126,23 @@ private:
     juce::Label frequencyLabel;
     juce::Label qLabel;
 };
+
+class DriveParametersComponent : public juce::Component, juce::Slider::Listener, private juce::Timer
+{
+public:
+    DriveParametersComponent(juce::AudioParameterFloat* driveParam);
+    virtual ~DriveParametersComponent();
+    virtual void paint(juce::Graphics& g) override;
+    virtual void resized() override;
+
+private:
+    DriveParametersComponent();
+    virtual void timerCallback() override;
+    virtual void sliderValueChanged(juce::Slider* slider) override;
+
+    juce::AudioParameterFloat* _driveParamPtr;
+
+    juce::Slider gainSlider;
+
+    juce::Label gainLabel;
+};
