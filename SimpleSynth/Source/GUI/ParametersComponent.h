@@ -31,4 +31,10 @@ private:
     virtual void timerCallback() override;
     
     OscillatorParameters* _oscParamsPtr;
+    
+    juce::Slider sineWaveLevelSlider;
+    juce::Slider sawWaveLevelSlider;
+    juce::Slider triWaveLevelSlider;
+    juce::Slider squareWaveLevelSlider;
+    juce::Slider noiseLevelSlider;
 };
