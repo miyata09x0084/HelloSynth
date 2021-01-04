@@ -61,5 +61,10 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     noiseLevelSlider.addListener(this);
     addAndMakeVisible(noiseLevelSlider);
     
-    juce::Font paramLabelFont = Font(PARAM_LABEL_FONT_SIZE, juce::Font::plain).withTypefaceStyle("Regular");
+    juce::Font paramLabelFont = juce::Font(PARAM_LABEL_FONT_SIZE, juce::Font::plain).withTypefaceStyle("Regular");
+    
+    sineWaveLevelLabel.setFont(paramLabelFont);
+    sineWaveLevelLabel.setText("Sine", juce::dontSendNotification);
+    sineWaveLevelLabel.setJustificationType(juce::Justification::centred);
+    sineWaveLevelLabel.setEditable(false, false, false);
 }
