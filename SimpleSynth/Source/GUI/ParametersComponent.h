@@ -9,3 +9,6 @@
 */
 
 #pragma once
+
+#include "JuceHeader.h"
+#include "../DSP/SimpleSynthParameters.h"
