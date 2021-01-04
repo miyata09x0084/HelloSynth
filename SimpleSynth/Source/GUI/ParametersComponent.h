@@ -20,4 +20,8 @@ public:
     virtual ~OscillatorParametersComponent();
     
     virtual void paint(juce::Graphics& g) override;
+    
+    virtual void resized() override;
+    
+    
 };
