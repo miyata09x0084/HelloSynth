@@ -23,5 +23,6 @@ public:
     
     virtual void resized() override;
     
-    
+private:
+    OscillatorParametersComponent();
 };
