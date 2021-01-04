@@ -26,4 +26,11 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     , squareWaveLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
     , noiseLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
 {
+    sineWaveLevelSlider.setRange(_oscParamsPtr->SineWaveLevel->range.start,_oscParamsPtr->SineWaveLevel->range.end, 0.01);
+
+    sineWaveLevelSlider.setValue(_oscParamsPtr->SineWaveLevel->get(), juce::dontSendNotification);
+
+    sineWaveLevelSlider.setPopupDisplayEnabled(true, true, this);
+
+    sineWaveLevelSlider.setPopupMenuEnabled(true);
 }
