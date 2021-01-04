@@ -176,3 +176,32 @@ private:
     juce::Label widthLabel;
     juce::Label freezeModeLabel;
 };
+
+class MiscParametersComponent : public juce::Component, juce::Slider::Listener, juce::Button::Listener, private juce::Timer
+{
+public:
+    MiscParametersComponent(juce::AudioParameterFloat* masterVolumeParam,
+                            juce::AudioParameterInt* voiceSizeParam,
+                            juce::AudioParameterBool* velocitySenseParam);
+    virtual ~MiscParametersComponent();
+    virtual void paint(juce::Graphics& g) override;
+    virtual void resized() override;
+
+private:
+    MiscParametersComponent();
+    virtual void timerCallback() override;
+    virtual void sliderValueChanged(juce::Slider* slider) override;
+    virtual void buttonClicked(juce::Button* button) override;
+
+    juce::AudioParameterFloat* _masterVolumeParamPtr;
+    juce::AudioParameterInt* _voiceSizeParamPtr;
+    juce::AudioParameterBool* _velocitySenseParamPtr;
+
+    juce::Slider masterVolumeSlider;
+    juce::Slider voiceSizeSlider;
+    
+    juce::ToggleButton velocitySenseButton;
+    
+    juce::Label masterVolumeLabel;
+    juce::Label voiceSizeLabel;
+};
