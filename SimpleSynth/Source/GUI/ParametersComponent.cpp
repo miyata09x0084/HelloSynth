@@ -69,4 +69,28 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     sineWaveLevelLabel.setEditable(false, false, false);
     
     addAndMakeVisible(sineWaveLevelLabel);
+
+    sawWaveLevelLabel.setFont(paramLabelFont);
+    sawWaveLevelLabel.setText("Saw", juce::dontSendNotification);
+    sawWaveLevelLabel.setJustificationType(juce::Justification::centred);
+    sawWaveLevelLabel.setEditable(false, false, false);
+    addAndMakeVisible(sawWaveLevelLabel);
+
+    squareWaveLevelLabel.setFont(paramLabelFont);
+    squareWaveLevelLabel.setText("Square", juce::dontSendNotification);
+    squareWaveLevelLabel.setJustificationType(juce::Justification::centred);
+    squareWaveLevelLabel.setEditable(false, false, false);
+    addAndMakeVisible(squareWaveLevelLabel);
+
+    triWaveLevelLabel.setFont(paramLabelFont);
+    triWaveLevelLabel.setText("Tri", juce::dontSendNotification);
+    triWaveLevelLabel.setJustificationType(juce::Justification::centred);
+    triWaveLevelLabel.setEditable(false, false, false);
+    addAndMakeVisible(triWaveLevelLabel);
+
+    noiseLevelLabel.setFont(paramLabelFont);
+    noiseLevelLabel.setText("Noise", juce::dontSendNotification);
+    noiseLevelLabel.setJustificationType(juce::Justification::centred);
+    noiseLevelLabel.setEditable(false, false, false);
+    addAndMakeVisible(noiseLevelLabel);
 }
