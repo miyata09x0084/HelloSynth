@@ -33,4 +33,6 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     sineWaveLevelSlider.setPopupDisplayEnabled(true, true, this);
 
     sineWaveLevelSlider.setPopupMenuEnabled(true);
+    
+    sineWaveLevelSlider.addListener(this);
 }
