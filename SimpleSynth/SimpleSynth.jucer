@@ -5,6 +5,12 @@
               pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="UHxutb" name="SimpleSynth">
     <GROUP id="{B5FF49CB-F8A7-FA0C-B4C9-7E27594021C1}" name="Source">
+      <GROUP id="{19C81DC7-2B1D-3E09-703C-2C93C6838812}" name="GUI">
+        <FILE id="zqfswj" name="ParametersComponent.cpp" compile="1" resource="0"
+              file="Source/GUI/ParametersComponent.cpp"/>
+        <FILE id="vSTj3s" name="ParametersComponent.h" compile="0" resource="0"
+              file="Source/GUI/ParametersComponent.h"/>
+      </GROUP>
       <GROUP id="{ABCF515F-6ECE-5EE9-0889-197D988D9CE0}" name="DSP">
         <FILE id="tS8xiQ" name="AmpEnvelope.cpp" compile="1" resource="0" file="Source/DSP/AmpEnvelope.cpp"/>
         <FILE id="IBLZEQ" name="AmpEnvelope.h" compile="0" resource="0" file="Source/DSP/AmpEnvelope.h"/>
