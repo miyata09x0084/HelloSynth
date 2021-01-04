@@ -29,4 +29,6 @@ private:
     virtual void sliderValueChanged(juce::Slider* slider) override;
     
     virtual void timerCallback() override;
+    
+    OscillatorParameters* _oscParamsPtr;
 };
