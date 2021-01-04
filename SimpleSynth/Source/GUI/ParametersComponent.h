@@ -12,3 +12,7 @@
 
 #include "JuceHeader.h"
 #include "../DSP/SimpleSynthParameters.h"
+
+class OscillatorParametersComponent : public juce::Component, juce::Slider::Listener, private juce::Timer
+{
+};
