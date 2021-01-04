@@ -25,4 +25,6 @@ public:
     
 private:
     OscillatorParametersComponent();
+    
+    virtual void sliderValueChanged(juce::Slider* slider) override;
 };
