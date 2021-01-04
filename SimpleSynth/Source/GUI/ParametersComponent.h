@@ -18,4 +18,6 @@ class OscillatorParametersComponent : public juce::Component, juce::Slider::List
 public:
     OscillatorParametersComponent(OscillatorParameters* oscParams);
     virtual ~OscillatorParametersComponent();
+    
+    virtual void paint(juce::Graphics& g) override;
 };
