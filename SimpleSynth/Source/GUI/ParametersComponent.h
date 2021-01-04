@@ -44,3 +44,31 @@ private:
     juce::Label squareWaveLevelLabel;
     juce::Label noiseLevelLabel;
 };
+
+class AmpEnvelopeParametersComponent : public juce::Component, juce::Slider::Listener, private juce::Timer
+{
+public:
+    AmpEnvelopeParametersComponent(AmpEnvelopeParameters* ampEnvParams);
+    virtual ~AmpEnvelopeParametersComponent();
+
+    virtual void paint(juce::Graphics& g) override;
+    virtual void resized() override;
+
+private:
+    AmpEnvelopeParametersComponent();
+
+    virtual void timerCallback() override;
+    virtual void sliderValueChanged(juce::Slider* slider) override;
+
+    AmpEnvelopeParameters* _ampEnvParamsPtr;
+
+    juce::Slider attackSlider;
+    juce::Slider decaySlider;
+    juce::Slider sustainSlider;
+    juce::Slider releaseSlider;
+
+    juce::Label attackLabel;
+    juce::Label decayLabel;
+    juce::Label sustainLabel;
+    juce::Label releaseLabel;
+};
