@@ -35,4 +35,34 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     sineWaveLevelSlider.setPopupMenuEnabled(true);
     
     sineWaveLevelSlider.addListener(this);
+    
+    addAndMakeVisible(sineWaveLevelSlider);
+
+    sawWaveLevelSlider.setRange(_oscParamsPtr->SawWaveLevel->range.start, _oscParamsPtr->SawWaveLevel->range.end, 0.01);
+    sawWaveLevelSlider.setValue(_oscParamsPtr->SawWaveLevel->get(), juce::dontSendNotification);
+    sawWaveLevelSlider.setPopupDisplayEnabled(true, true, this);
+    sawWaveLevelSlider.setPopupMenuEnabled(true);
+    sawWaveLevelSlider.addListener(this);
+    addAndMakeVisible(sawWaveLevelSlider);
+
+    triWaveLevelSlider.setRange(_oscParamsPtr->TriWaveLevel->range.start, _oscParamsPtr->TriWaveLevel->range.end, 0.01);
+    triWaveLevelSlider.setValue(_oscParamsPtr->TriWaveLevel->get(), juce::dontSendNotification);
+    triWaveLevelSlider.setPopupDisplayEnabled(true, true, this);
+    triWaveLevelSlider.setPopupMenuEnabled(true);
+    triWaveLevelSlider.addListener(this);
+    addAndMakeVisible(triWaveLevelSlider);
+
+    squareWaveLevelSlider.setRange(_oscParamsPtr->SquareWaveLevel->range.start, _oscParamsPtr->SquareWaveLevel->range.end, 0.01);
+    squareWaveLevelSlider.setValue(_oscParamsPtr->SquareWaveLevel->get(), juce::dontSendNotification);
+    squareWaveLevelSlider.setPopupDisplayEnabled(true, true, this);
+    squareWaveLevelSlider.setPopupMenuEnabled(true);
+    squareWaveLevelSlider.addListener(this);
+    addAndMakeVisible(squareWaveLevelSlider);
+
+    noiseLevelSlider.setRange(_oscParamsPtr->NoiseLevel->range.start, _oscParamsPtr->NoiseLevel->range.end, 0.01);
+    noiseLevelSlider.setValue(_oscParamsPtr->NoiseLevel->get(), juce::dontSendNotification);
+    noiseLevelSlider.setPopupDisplayEnabled(true, true, this);
+    noiseLevelSlider.setPopupMenuEnabled(true);
+    noiseLevelSlider.addListener(this);
+    addAndMakeVisible(noiseLevelSlider);
 }
