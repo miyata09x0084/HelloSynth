@@ -37,4 +37,10 @@ private:
     juce::Slider triWaveLevelSlider;
     juce::Slider squareWaveLevelSlider;
     juce::Slider noiseLevelSlider;
+    
+    juce::Label sineWaveLevelLabel;
+    juce::Label sawWaveLevelLabel;
+    juce::Label triWaveLevelLabel;
+    juce::Label squareWaveLevelLabel;
+    juce::Label noiseLevelLabel;
 };
