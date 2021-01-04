@@ -100,3 +100,29 @@ private:
     juce::Label amountLabel;
     juce::Label speedLabel;
 };
+
+class FilterParametersComponent : public juce::Component, juce::Slider::Listener, juce::ComboBox::Listener, private juce::Timer
+{
+public:
+    FilterParametersComponent(FilterParameters* filterParams);
+    virtual ~FilterParametersComponent();
+    virtual void paint(juce::Graphics& g) override;
+    virtual void resized() override;
+
+private:
+    FilterParametersComponent();
+    virtual void timerCallback() override;
+    virtual void sliderValueChanged(juce::Slider* slider) override;
+    virtual void comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) override;
+
+    FilterParameters* _filterParamsPtr;
+
+    juce::ComboBox typeSelector;
+
+    juce::Slider frequencySlider;
+    juce::Slider qSlider;
+
+    juce::Label typeLabel;
+    juce::Label frequencyLabel;
+    juce::Label qLabel;
+};
