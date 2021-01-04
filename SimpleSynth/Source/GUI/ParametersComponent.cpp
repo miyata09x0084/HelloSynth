@@ -93,4 +93,6 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     noiseLevelLabel.setJustificationType(juce::Justification::centred);
     noiseLevelLabel.setEditable(false, false, false);
     addAndMakeVisible(noiseLevelLabel);
+    
+    startTimerHz(30.0f);
 }
