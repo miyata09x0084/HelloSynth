@@ -67,4 +67,6 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     sineWaveLevelLabel.setText("Sine", juce::dontSendNotification);
     sineWaveLevelLabel.setJustificationType(juce::Justification::centred);
     sineWaveLevelLabel.setEditable(false, false, false);
+    
+    addAndMakeVisible(sineWaveLevelLabel);
 }
