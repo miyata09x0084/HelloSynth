@@ -17,3 +17,13 @@ namespace {
     const int PANEL_NAME_HEIGHT = 42;
     const int LOCAL_MARGIN = 2;
 }
+
+OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameters* oscParams)
+    : _oscParamsPtr(oscParams)
+    , sineWaveLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
+    , sawWaveLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
+    , triWaveLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
+    , squareWaveLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
+    , noiseLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
+{
+}
