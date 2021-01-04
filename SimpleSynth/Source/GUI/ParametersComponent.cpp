@@ -27,15 +27,10 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     , noiseLevelSlider(juce::Slider::SliderStyle::LinearVertical, juce::Slider::TextEntryBoxPosition::NoTextBox)
 {
     sineWaveLevelSlider.setRange(_oscParamsPtr->SineWaveLevel->range.start,_oscParamsPtr->SineWaveLevel->range.end, 0.01);
-
     sineWaveLevelSlider.setValue(_oscParamsPtr->SineWaveLevel->get(), juce::dontSendNotification);
-
     sineWaveLevelSlider.setPopupDisplayEnabled(true, true, this);
-
     sineWaveLevelSlider.setPopupMenuEnabled(true);
-    
     sineWaveLevelSlider.addListener(this);
-    
     addAndMakeVisible(sineWaveLevelSlider);
 
     sawWaveLevelSlider.setRange(_oscParamsPtr->SawWaveLevel->range.start, _oscParamsPtr->SawWaveLevel->range.end, 0.01);
@@ -65,4 +60,6 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     noiseLevelSlider.setPopupMenuEnabled(true);
     noiseLevelSlider.addListener(this);
     addAndMakeVisible(noiseLevelSlider);
+    
+    juce::Font paramLabelFont = Font(PARAM_LABEL_FONT_SIZE, juce::Font::plain).withTypefaceStyle("Regular");
 }
