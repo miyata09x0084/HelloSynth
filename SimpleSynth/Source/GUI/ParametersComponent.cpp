@@ -165,3 +165,7 @@ void OscillatorParametersComponent::resized()
         noiseLevelSlider.setBounds(area.reduced(LOCAL_MARGIN));
     }
 }
+
+void OscillatorParametersComponent::timerCallback()
+{
+}
