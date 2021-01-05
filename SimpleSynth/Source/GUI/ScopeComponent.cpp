@@ -129,4 +129,14 @@ private:
 template<typename SampleType>
 class ScopeComponent : public juce::Component, private juce::Timer
 {
+public:
+
+    using Queue = AudioBufferQueue<SampleType>;
+
+    ScopeComponent(Queue& queueuToUse)
+        : audioBufferQueue(queueuToUse)
+    {
+        sampleData.fill(SampleType(0));
+        setFramePerSecond(30);
+    }
 };
