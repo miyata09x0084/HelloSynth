@@ -168,26 +168,54 @@ public:
             g.drawText(text, bounds.removeFromTop(panelNameHeight).reduced(localMargin), juce::Justification::centred, true);
         }
         
-        Rectangle<int> drawArea = getLocalBounds();
+        juce::Rectangle<int> drawArea = getLocalBounds();
         drawArea.removeFromTop(panelNameHeight);
         drawArea.reduce(drawArea.getWidth()* 0.05f, drawArea.getHeight()* 0.1f);
 
-        // ④-B. 波形を描画する矩形領域の背景を灰色に塗りつぶす。
         g.setColour(juce::Colours::darkgrey);
         g.fillRect(drawArea);
 
-        // ④-B. 波形をプロットする領域をRectangle<SampleType>型に代入する。
         SampleType drawX = (SampleType)drawArea.getX();
         SampleType drawY = (SampleType)drawArea.getY();
         SampleType drawH = (SampleType)drawArea.getHeight();
         SampleType drawW = (SampleType)drawArea.getWidth();
-        Rectangle<SampleType> scopeRect = Rectangle<SampleType>{ drawX, drawY, drawW, drawH };
+        juce::Rectangle<SampleType> scopeRect = juce::Rectangle<SampleType>{ drawX, drawY, drawW, drawH };
 
-        // ④-B. プロットする波形の色を設定する。
         g.setColour(juce::Colours::cyan);
 
-        // ④-B. 波形をプロットする関数を呼び出す。
-        //       第5引数の値でY方向のスケールを調整し、第6引数の値でY軸の位置を調整している。
         plot(sampleData.data(), sampleData.size(), g, scopeRect, SampleType(0.4), scopeRect.getHeight() / 2);
+    }
+    
+    void resized() override {}
+
+    private:
+        void timerCallback() override
+        {
+            audioBufferQueue.pop(sampleData.data());
+            repaint();
+        }
+    
+    static void plot(const SampleType* data
+        , size_t numSamples
+        , juce::Graphics& g
+        , juce::Rectangle<SampleType> rect
+        , SampleType scaler = SampleType(1)
+        , SampleType offset = SampleType(0))
+    {
+        auto w = rect.getWidth();
+        auto h = rect.getHeight();
+        auto right = rect.getRight();
+        auto alignedCentre = rect.getBottom() - offset;
+        auto gain = h * scaler;
+
+        for (size_t i = 1; i < numSamples; ++i)
+        {
+            const float x1 = jmap(SampleType(i - 1), SampleType(0), SampleType(numSamples - 1), SampleType(right - w), SampleType(right));
+            const float y1 = alignedCentre - gain * data[i - 1];
+            const float x2 = jmap(SampleType(i), SampleType(0), SampleType(numSamples - 1), SampleType(right - w), SampleType(right));
+            const float y2 = alignedCentre - gain * data[i];
+            const float t = 1.0f;
+            g.drawLine(x1, y1, x2, y2, t);
+        }
     }
 };
