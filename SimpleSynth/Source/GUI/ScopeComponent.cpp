@@ -49,10 +49,14 @@ public:
         jassert(size2 == 0);
 
         if (size1 > 0) {
-            FloatVectorOperations::copy(outputBuffer, buffers[(size_t)start1].data(), (int)bufferSize);
+            juce::FloatVectorOperations::copy(outputBuffer, buffers[(size_t)start1].data(), (int)bufferSize);
         }
 
         abstractFifo.finishedRead(size1);
     }
 
+private:
+    std::array <std::array<SampleType, bufferSize>, numBuffers> buffers;
+
+    juce::AbstractFifo abstractFifo{ numBuffers };
 };
