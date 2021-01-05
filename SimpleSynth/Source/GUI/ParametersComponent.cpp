@@ -123,3 +123,7 @@ void OscillatorParametersComponent::paint(juce::Graphics& g)
         g.drawText(text, textArea, juce::Justification::centred, true);
     }
 }
+
+void OscillatorParametersComponent::resized()
+{
+}
