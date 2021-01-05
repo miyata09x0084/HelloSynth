@@ -140,4 +140,28 @@ void OscillatorParametersComponent::resized()
 
         sineWaveLevelSlider.setBounds(area.reduced(LOCAL_MARGIN));
     }
+    
+    {
+        juce::Rectangle<int> area = bounds.removeFromLeft(getWidth() * divide);
+        sawWaveLevelLabel.setBounds(area.removeFromTop(labelHeight).reduced(LOCAL_MARGIN));
+        sawWaveLevelSlider.setBounds(area.reduced(LOCAL_MARGIN));
+    }
+
+    {
+        juce::Rectangle<int> area = bounds.removeFromLeft(getWidth() * divide);
+        triWaveLevelLabel.setBounds(area.removeFromTop(labelHeight).reduced(LOCAL_MARGIN));
+        triWaveLevelSlider.setBounds(area.reduced(LOCAL_MARGIN));
+    }
+
+    {
+        juce::Rectangle<int> area = bounds.removeFromLeft(getWidth() * divide);
+        squareWaveLevelLabel.setBounds(area.removeFromTop(labelHeight).reduced(LOCAL_MARGIN));
+        squareWaveLevelSlider.setBounds(area.reduced(LOCAL_MARGIN));
+    }
+
+    {
+        juce::Rectangle<int> area = bounds.removeFromLeft(getWidth() * divide);
+        noiseLevelLabel.setBounds(area.removeFromTop(labelHeight).reduced(LOCAL_MARGIN));
+        noiseLevelSlider.setBounds(area.reduced(LOCAL_MARGIN));
+    }
 }
