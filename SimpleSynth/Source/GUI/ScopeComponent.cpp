@@ -39,4 +39,20 @@ public:
         abstractFifo.finishedWrite(size1);
     }
 
+    void pop(SampleType* outputBuffer)
+    {
+        int start1, size1, start2, size2;
+
+        abstractFifo.prepareToRead(1, start1, size1, start2, size2);
+
+        jassert(size1 <= 1);
+        jassert(size2 == 0);
+
+        if (size1 > 0) {
+            FloatVectorOperations::copy(outputBuffer, buffers[(size_t)start1].data(), (int)bufferSize);
+        }
+
+        abstractFifo.finishedRead(size1);
+    }
+
 };
