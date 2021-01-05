@@ -146,29 +146,48 @@ public:
         startTimerHz(framePerSecond);
     }
     
-    // ④SCOPEパネルの状態を描画する関数。パネルの領域を塗りつぶす処理と波形をプロットする処理を実行する。
-    void paint(Graphics& g) override
+    void paint(juce::Graphics& g) override
     {
-        // ④-A. パネルの名前表示に使用する文字のフォント設定を生成する。
         int panelNameHeight = 42;
         int localMargin = 2;
-        Font panelNameFont = Font(24.0f, Font::plain).withTypefaceStyle("Italic");
+        juce::Font panelNameFont = juce::Font(24.0f, juce::Font::plain).withTypefaceStyle("Italic");
 
-        // ④-A. パネルの背景を描画する処理。当コンポーネントの領域を角丸の四角形で塗りつぶす描画命令を実行する。
         {
             float x = 0.0f, y = 0.0f, width = (float)getWidth(), height = (float)getHeight();
-            Colour panelColour = juce::Colour(36, 36, 36);
+            juce::Colour panelColour = juce::Colour(36, 36, 36);
             g.setColour(panelColour);
             g.fillRoundedRectangle(x, y, width, height, 10.0f);
         }
 
-        // ④-A. パネル上部にパネルの名前を表示する。文字列を表示する領域を決定した後、コンテキストに描画命令を実行する。
         {
-            Rectangle<int> bounds = getLocalBounds();
-            String text("SCOPE");
-            Colour fillColour = Colours::white;
+            juce::Rectangle<int> bounds = getLocalBounds();
+            juce::String text("SCOPE");
+            juce::Colour fillColour = juce::Colours::white;
             g.setColour(fillColour);
             g.setFont(panelNameFont);
-            g.drawText(text, bounds.removeFromTop(panelNameHeight).reduced(localMargin), Justification::centred, true);
+            g.drawText(text, bounds.removeFromTop(panelNameHeight).reduced(localMargin), juce::Justification::centred, true);
         }
+        
+        Rectangle<int> drawArea = getLocalBounds();
+        drawArea.removeFromTop(panelNameHeight);
+        drawArea.reduce(drawArea.getWidth()* 0.05f, drawArea.getHeight()* 0.1f);
+
+        // ④-B. 波形を描画する矩形領域の背景を灰色に塗りつぶす。
+        g.setColour(juce::Colours::darkgrey);
+        g.fillRect(drawArea);
+
+        // ④-B. 波形をプロットする領域をRectangle<SampleType>型に代入する。
+        SampleType drawX = (SampleType)drawArea.getX();
+        SampleType drawY = (SampleType)drawArea.getY();
+        SampleType drawH = (SampleType)drawArea.getHeight();
+        SampleType drawW = (SampleType)drawArea.getWidth();
+        Rectangle<SampleType> scopeRect = Rectangle<SampleType>{ drawX, drawY, drawW, drawH };
+
+        // ④-B. プロットする波形の色を設定する。
+        g.setColour(juce::Colours::cyan);
+
+        // ④-B. 波形をプロットする関数を呼び出す。
+        //       第5引数の値でY方向のスケールを調整し、第6引数の値でY軸の位置を調整している。
+        plot(sampleData.data(), sampleData.size(), g, scopeRect, SampleType(0.4), scopeRect.getHeight() / 2);
+    }
 };
