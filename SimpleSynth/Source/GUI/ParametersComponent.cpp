@@ -103,4 +103,10 @@ OscillatorParametersComponent::~OscillatorParametersComponent()
 void OscillatorParametersComponent::paint(juce::Graphics& g)
 {
     juce::Font panelNameFont = juce::Font(PANEL_NAME_FONT_SIZE, juce::Font::plain).withTypefaceStyle("Italic");
+    
+    {
+        float x = 0.0f, y = 0.0f, width = (float)getWidth(), height = (float)getHeight();
+        g.setColour(PANEL_COLOUR);
+        g.fillRoundedRectangle(x, y, width, height, 10.0f);                                 
+    }
 }
