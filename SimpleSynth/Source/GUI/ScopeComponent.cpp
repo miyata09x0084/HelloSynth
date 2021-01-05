@@ -112,4 +112,6 @@ private:
         Collecting
     };
 
+    static constexpr auto triggerLevel = SampleType(0.001);
+
 };
