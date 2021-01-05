@@ -121,6 +121,12 @@ private:
     State currentState{ State::WaitingForTrigger };
     AudioBufferQueue<SampleType>& audioBufferQueue;
     size_t numCollected;
-    SampleType prevSample = SampleType(100);                         
+    SampleType prevSample = SampleType(100);
 };
 
+
+
+template<typename SampleType>
+class ScopeComponent : public juce::Component, private juce::Timer
+{
+};
