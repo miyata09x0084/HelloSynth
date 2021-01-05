@@ -174,3 +174,7 @@ void OscillatorParametersComponent::timerCallback()
     squareWaveLevelSlider.setValue(_oscParamsPtr->SquareWaveLevel->get(), juce::dontSendNotification);
     noiseLevelSlider.setValue(_oscParamsPtr->NoiseLevel->get(), juce::dontSendNotification);
 }
+
+void OscillatorParametersComponent::sliderValueChanged(juce::Slider* slider)
+{
+}
