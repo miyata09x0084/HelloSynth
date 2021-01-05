@@ -177,4 +177,24 @@ void OscillatorParametersComponent::timerCallback()
 
 void OscillatorParametersComponent::sliderValueChanged(juce::Slider* slider)
 {
+    if (slider == &sineWaveLevelSlider)
+    {
+        *_oscParamsPtr->SineWaveLevel = (float)sineWaveLevelSlider.getValue();
+    }
+    else if (slider == &sawWaveLevelSlider)
+    {
+        *_oscParamsPtr->SawWaveLevel = (float)sawWaveLevelSlider.getValue();
+    }
+    else if (slider == &triWaveLevelSlider)
+    {
+        *_oscParamsPtr->TriWaveLevel = (float)triWaveLevelSlider.getValue();
+    }
+    else if (slider == &squareWaveLevelSlider)
+    {
+        *_oscParamsPtr->SquareWaveLevel = (float)squareWaveLevelSlider.getValue();
+    }
+    else if (slider == &noiseLevelSlider)
+    {
+        *_oscParamsPtr->NoiseLevel = (float)noiseLevelSlider.getValue();
+    }
 }
