@@ -68,4 +68,25 @@ public:
     ScopeDataCollector(AudioBufferQueue<SampleType>& queueToUse)
         : audioBufferQueue(queueToUse)
     {}
+    
+    void process(const SampleType* data, size_t numSamples)
+    {
+        size_t index = 0;
+
+        if (currentState == State::WaitingForTrigger)
+        {
+            while (index++ < numSamples)
+            {
+                auto currentSample = *data++;
+                if (currentSample >= triggerLevel && prevSample < triggerLevel)
+                {
+                    numCollected = 0;
+                    currentState = State::Collecting;
+                    break;
+                }
+                prevSample = currentSample;
+
+            }
+        }   
+
 };
