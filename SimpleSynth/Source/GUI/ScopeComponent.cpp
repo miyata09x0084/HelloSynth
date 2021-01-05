@@ -145,4 +145,30 @@ public:
         jassert(framePerSecond > 0 && framePerSecond < 1000);
         startTimerHz(framePerSecond);
     }
+    
+    // ④SCOPEパネルの状態を描画する関数。パネルの領域を塗りつぶす処理と波形をプロットする処理を実行する。
+    void paint(Graphics& g) override
+    {
+        // ④-A. パネルの名前表示に使用する文字のフォント設定を生成する。
+        int panelNameHeight = 42;
+        int localMargin = 2;
+        Font panelNameFont = Font(24.0f, Font::plain).withTypefaceStyle("Italic");
+
+        // ④-A. パネルの背景を描画する処理。当コンポーネントの領域を角丸の四角形で塗りつぶす描画命令を実行する。
+        {
+            float x = 0.0f, y = 0.0f, width = (float)getWidth(), height = (float)getHeight();
+            Colour panelColour = juce::Colour(36, 36, 36);
+            g.setColour(panelColour);
+            g.fillRoundedRectangle(x, y, width, height, 10.0f);
+        }
+
+        // ④-A. パネル上部にパネルの名前を表示する。文字列を表示する領域を決定した後、コンテキストに描画命令を実行する。
+        {
+            Rectangle<int> bounds = getLocalBounds();
+            String text("SCOPE");
+            Colour fillColour = Colours::white;
+            g.setColour(fillColour);
+            g.setFont(panelNameFont);
+            g.drawText(text, bounds.removeFromTop(panelNameHeight).reduced(localMargin), Justification::centred, true);
+        }
 };
