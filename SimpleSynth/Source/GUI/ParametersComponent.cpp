@@ -99,3 +99,7 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
 
 OscillatorParametersComponent::~OscillatorParametersComponent()
 {}
+
+void OscillatorParametersComponent::paint(juce::Graphics& g)
+{
+}
