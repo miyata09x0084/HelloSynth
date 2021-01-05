@@ -11,3 +11,8 @@
 #include "ScopeComponent.h"
 
 #include <JuceHeader.h>
+
+template <typename SampleType>
+class AudioBufferQueue
+{
+}
