@@ -218,4 +218,7 @@ public:
             g.drawLine(x1, y1, x2, y2, t);
         }
     }
+    
+    Queue& audioBufferQueue;
+    std::array<SampleType, Queue::bufferSize> sampleData;    
 };
