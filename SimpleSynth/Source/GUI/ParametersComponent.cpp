@@ -129,4 +129,7 @@ void OscillatorParametersComponent::resized()
     float rowSize = 5.0f;
     float divide = 1.0f / rowSize;
     int labelHeight = 20;
+    
+    juce::Rectangle<int> bounds = getLocalBounds();
+    bounds.removeFromTop(PANEL_NAME_HEIGHT);
 }
