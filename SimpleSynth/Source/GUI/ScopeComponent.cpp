@@ -64,4 +64,8 @@ private:
 template<typename SampleType>
 class ScopeDataCollector
 {
+public:
+    ScopeDataCollector(AudioBufferQueue<SampleType>& queueToUse)
+        : audioBufferQueue(queueToUse)
+    {}
 };
