@@ -87,6 +87,22 @@ public:
                 prevSample = currentSample;
 
             }
-        }   
+        }
+
+        if (currentState == State::Collecting)
+        {
+            while (index++ < numSamples)
+            {
+                buffer[numCollected++] = *data++;
+
+                if (numCollected == buffer.size())
+                {
+                    audioBufferQueue.push(buffer.data(), buffer.size());
+                    currentState = State::WaitingForTrigger;
+                    prevSample = SampleType(100);
+                    break;
+             }
+         }
+    }
 
 };
