@@ -126,4 +126,7 @@ void OscillatorParametersComponent::paint(juce::Graphics& g)
 
 void OscillatorParametersComponent::resized()
 {
+    float rowSize = 5.0f;
+    float divide = 1.0f / rowSize;
+    int labelHeight = 20;
 }
