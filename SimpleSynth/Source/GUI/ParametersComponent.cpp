@@ -132,4 +132,12 @@ void OscillatorParametersComponent::resized()
     
     juce::Rectangle<int> bounds = getLocalBounds();
     bounds.removeFromTop(PANEL_NAME_HEIGHT);
+    
+    {
+        juce::Rectangle<int> area = bounds.removeFromLeft(getWidth() * divide);
+
+        sineWaveLevelLabel.setBounds(area.removeFromTop(labelHeight).reduced(LOCAL_MARGIN));
+
+        sineWaveLevelSlider.setBounds(area.reduced(LOCAL_MARGIN));
+    }
 }
