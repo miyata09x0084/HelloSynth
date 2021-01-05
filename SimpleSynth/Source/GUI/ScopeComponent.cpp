@@ -139,4 +139,10 @@ public:
         sampleData.fill(SampleType(0));
         setFramePerSecond(30);
     }
+    
+    void setFramePerSecond(int framePerSecond)
+    {
+        jassert(framePerSecond > 0 && framePerSecond < 1000);
+        startTimerHz(framePerSecond);
+    }
 };
