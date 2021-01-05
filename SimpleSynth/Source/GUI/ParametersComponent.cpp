@@ -96,3 +96,6 @@ OscillatorParametersComponent::OscillatorParametersComponent(OscillatorParameter
     
     startTimerHz(30.0f);
 }
+
+OscillatorParametersComponent::~OscillatorParametersComponent()
+{}
