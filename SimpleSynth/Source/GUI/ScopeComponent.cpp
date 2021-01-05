@@ -105,4 +105,11 @@ public:
          }
     }
 
+private:
+    enum class State
+    {
+        WaitingForTrigger,
+        Collecting
+    };
+
 };
