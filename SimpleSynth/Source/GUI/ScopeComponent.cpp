@@ -9,3 +9,5 @@
 */
 
 #include "ScopeComponent.h"
+
+#include <JuceHeader.h>
