@@ -168,4 +168,9 @@ void OscillatorParametersComponent::resized()
 
 void OscillatorParametersComponent::timerCallback()
 {
+    sineWaveLevelSlider.setValue(_oscParamsPtr->SineWaveLevel->get(), juce::dontSendNotification);
+    sawWaveLevelSlider.setValue(_oscParamsPtr->SawWaveLevel->get(), juce::dontSendNotification);
+    triWaveLevelSlider.setValue(_oscParamsPtr->TriWaveLevel->get(), juce::dontSendNotification);
+    squareWaveLevelSlider.setValue(_oscParamsPtr->SquareWaveLevel->get(), juce::dontSendNotification);
+    noiseLevelSlider.setValue(_oscParamsPtr->NoiseLevel->get(), juce::dontSendNotification);
 }
