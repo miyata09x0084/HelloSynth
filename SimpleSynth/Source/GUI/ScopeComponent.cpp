@@ -60,3 +60,8 @@ private:
 
     juce::AbstractFifo abstractFifo{ numBuffers };
 };
+
+template<typename SampleType>
+class ScopeDataCollector
+{
+};
