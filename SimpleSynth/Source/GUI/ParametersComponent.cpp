@@ -102,4 +102,5 @@ OscillatorParametersComponent::~OscillatorParametersComponent()
 
 void OscillatorParametersComponent::paint(juce::Graphics& g)
 {
+    juce::Font panelNameFont = juce::Font(PANEL_NAME_FONT_SIZE, juce::Font::plain).withTypefaceStyle("Italic");
 }
