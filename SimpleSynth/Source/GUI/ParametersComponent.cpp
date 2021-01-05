@@ -107,6 +107,19 @@ void OscillatorParametersComponent::paint(juce::Graphics& g)
     {
         float x = 0.0f, y = 0.0f, width = (float)getWidth(), height = (float)getHeight();
         g.setColour(PANEL_COLOUR);
-        g.fillRoundedRectangle(x, y, width, height, 10.0f);                                 
+        g.fillRoundedRectangle(x, y, width, height, 10.0f);
+    }
+    
+    {
+        juce::Rectangle<int> bounds = getLocalBounds();
+
+        juce::Rectangle<int> textArea = bounds.removeFromTop(PANEL_NAME_HEIGHT).reduced(LOCAL_MARGIN);
+
+        juce::String text("OSC MIX");
+        juce::Colour textColour = juce::Colours::white;
+        g.setColour(textColour);
+        g.setFont(panelNameFont);
+
+        g.drawText(text, textArea, juce::Justification::centred, true);
     }
 }
