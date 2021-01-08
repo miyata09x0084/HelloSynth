@@ -11,6 +11,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "DSP/SimpleSynthParameters.h"
 
+#include "GUI/ScopeComponent.h"
+
 //==============================================================================
 /**
 */
