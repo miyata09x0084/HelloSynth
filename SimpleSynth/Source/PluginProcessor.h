@@ -58,6 +58,10 @@ public:
     
     void changeVoiceSize();
     
+    juce::MidiKeyboardState& getKeyboardState() { return keyboardState; }
+    
+    AudioBufferQueue<float>& getAudioBufferQueue() { return scopeDataQueue; }
+    
     const juce::StringArray LFO_TARGETS{ "None", "WaveLevel", "WaveAngle" };
     const juce::StringArray LFO_WAVE_TYPES{ "Sine", "Saw", "Tri", "Square", "Noise" };
     const juce::StringArray FILTER_TYPES{ "Low-Pass", "High-Pass", "Band-Pass" };
@@ -86,6 +90,11 @@ private:
     juce::dsp::Reverb reverb;
 
     juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>> iirFilter;
+    
+    juce::MidiKeyboardState keyboardState;
+
+    AudioBufferQueue<float> scopeDataQueue;
+    ScopeDataCollector<float> scopeDataCollector;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleSynthAudioProcessor)
