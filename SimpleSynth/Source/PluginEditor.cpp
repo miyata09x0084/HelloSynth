@@ -42,10 +42,26 @@ SimpleSynthAudioProcessorEditor::SimpleSynthAudioProcessorEditor (SimpleSynthAud
     addAndMakeVisible(scopeComponent);
     
     setSize (960, 540 + KEY_HEIGHT);
+    
+    customLookAndFeel = new juce::LookAndFeel_V4(juce::LookAndFeel_V4::getGreyColourScheme());
+    
+    customLookAndFeel->setColour(juce::TooltipWindow::ColourIds::textColourId, juce::Colours::white);
+    customLookAndFeel->setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::mediumvioletred);
+    customLookAndFeel->setColour(juce::Slider::ColourIds::trackColourId, juce::Colours::yellow);
+    
+    for (Component* child : getChildren()) {
+        child->setLookAndFeel(customLookAndFeel);
+    }
 }
 
 SimpleSynthAudioProcessorEditor::~SimpleSynthAudioProcessorEditor()
 {
+    
+    for (Component* child : getChildren()) {
+        child->setLookAndFeel(nullptr);
+    }
+    
+    delete customLookAndFeel;
 }
 
 //==============================================================================
