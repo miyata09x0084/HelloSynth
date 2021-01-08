@@ -60,6 +60,7 @@ SimpleSynthAudioProcessor::SimpleSynthAudioProcessor()
 , masterVolumePrameter(new juce::AudioParameterFloat("MASTER_VOLUME", "Volume", -36.f, 6.f, -3.0f))
 , voiceSizeParameter(new juce::AudioParameterInt("VOICE_SIZE", "Voice-Size", 1, 128, 8))
 , velocitySenseParameter(new juce::AudioParameterBool("VELOCITY_SENSE", "Velocity-Sense", true))
+, scopeDataCollector(scopeDataQueue)
 {
     oscParameters.addAllParameters(*this);
     lfoParameters.addAllParameters(*this);
@@ -212,6 +213,8 @@ bool SimpleSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
 
 void SimpleSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
+    keyboardState.processNextMidiBuffer(midiMessages, 0, buffer.getNumSamples(), true);
+    
     if ((int)voiceSizeParameter->get() != synth.getNumVoices()) {
         changeVoiceSize();
     }
@@ -272,6 +275,8 @@ void SimpleSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     reverb.process(context);
 
     limiter.process(context);
+    
+    scopeDataCollector.process(buffer.getReadPointer(0), (size_t)buffer.getNumSamples());
 
     masterVolume.setGainDecibels(masterVolumePrameter->get());
     masterVolume.process(context);
