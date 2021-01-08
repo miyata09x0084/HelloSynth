@@ -11,6 +11,9 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
+#include "GUI/ParametersComponent.h"
+#include "GUI/ScopeComponent.h"
+
 //==============================================================================
 /**
 */
@@ -25,9 +28,18 @@ public:
     void resized() override;
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
+    
     SimpleSynthAudioProcessor& audioProcessor;
+    
+    juce::MidiKeyboardComponent keyboardComponent;
+    ScopeComponent<float> scopeComponent;
+    OscillatorParametersComponent oscParamsComponent;
+    AmpEnvelopeParametersComponent ampEnvParamsComponent;
+    LfoParametersComponent lfoParamsComponent;
+    FilterParametersComponent filterParamsComponent;
+    ReverbParametersComponent reverbParamsComponent;
+    DriveParametersComponent driveParamsComponent;
+    MiscParametersComponent miscParamsComponent;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleSynthAudioProcessorEditor)
 };
