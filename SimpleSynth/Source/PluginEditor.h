@@ -41,5 +41,6 @@ private:
     DriveParametersComponent driveParamsComponent;
     MiscParametersComponent miscParamsComponent;
 
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleSynthAudioProcessorEditor)
 };
